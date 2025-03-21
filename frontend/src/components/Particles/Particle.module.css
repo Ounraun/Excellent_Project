@@ -1,0 +1,24 @@
+.particleWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 600px;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle canvas {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  
+}
+

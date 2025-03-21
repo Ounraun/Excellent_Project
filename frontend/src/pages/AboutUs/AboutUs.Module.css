@@ -1,0 +1,59 @@
+.content-layout {
+    position: relative;
+    z-index: 1;
+    margin-top: 30px;
+    max-width: 849px;
+    margin-left: 100px;
+}
+  
+ .main-title {
+    font-family: "Orbitron";
+    font-weight: bold;
+    font-size: 100px;
+    color: white;
+ }
+ 
+.main-text {
+    font-family: "Saira";
+    font-size: 32px;
+    color: white;
+}
+ 
+.bg-container {
+    width: 100%;
+    height: 100%;   
+    margin-top: 600px; 
+}
+
+.service-layout {
+    background-image: url("src/assets/bg-solutions.svg"); /* ใช้ path ของรูป */
+    background-size: contain; /* ปรับให้เต็มพื้นที่ */
+    background-position: center; /* จัดให้อยู่ตรงกลาง */
+    background-repeat: no-repeat; /*ป้องกันการซ้ำ*/
+     background-color: #000; /* ปรับเป็นสีเดียวกับพื้นหลัง */
+    /* transform: scale(1); */
+    height: 100%;
+    width: 100%;
+    /* margin-top: 600px; */
+
+}
+
+.bold-text {
+  font-weight: 700 !important;
+}
+
+.vl {
+  height: 277px;
+  position: absolute;
+  bottom: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    #4b6b6e 10%,
+    #F6CAA9 45%,
+    #44686A 85%
+  );
+}
+  
