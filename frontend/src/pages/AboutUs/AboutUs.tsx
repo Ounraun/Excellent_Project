@@ -144,7 +144,7 @@ const AboutUs = () => {
           className="position-absolute"
           style={{
             top: "0 ",
-            right: "2%",
+            right: "1%",
           }}
         >
           <img src="src/assets/AboutUs/Gem-floor.svg" alt="" />
@@ -153,12 +153,23 @@ const AboutUs = () => {
         <div className="iso-layout">
           <div className="iso-item">
             <div className="iso-item-content text-white">
-              <h3>ISO</h3>
-              <p>ISO</p>
+              <p>Empower your business with IT solutions by</p>
+              <p>
+                <span className="color-gradient-1">
+                  Experts understand your every need.
+                </span>{" "}
+              </p>
+              <p>
+                <span>
+                  Guarantees with The{" "}
+                  <span className="color-gradient-2">ISO 9001:2015</span>{" "}
+                </span>
+              </p>
             </div>
           </div>
         </div>
       </div>
+      <div className="position-relative community-layout"></div>
     </div>
   );
 };
