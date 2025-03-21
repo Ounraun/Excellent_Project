@@ -29,7 +29,7 @@ const AboutUs = () => {
                 The Excellent
               </h1>
               <p
-                className="main-text"
+                className="main-text-s32 "
                 style={{
                   fontWeight: "400",
                   lineHeight: "170%",
@@ -144,7 +144,8 @@ const AboutUs = () => {
           className="position-absolute"
           style={{
             top: "0 ",
-            right: "1%",
+            right: "0",
+            // transform: "translate(50%,50%)",
           }}
         >
           <img src="src/assets/AboutUs/Gem-floor.svg" alt="" />
@@ -174,6 +175,47 @@ const AboutUs = () => {
         <div className="filter-bg-community-2"></div>
         <div className="circle-bg-community-1"></div>
         <div className="circle-bg-community-2"></div>
+        <div className="position-absolute w-100 h-100">
+          <div className="position-relative wave-bg-community w-100 h-100">
+            <img
+              className="position-absolute bg-wave-filter "
+              src="../../src/assets/AboutUs/bg-wave-service.svg"
+              alt=""
+            />
+            <img
+              className="position-absolute bg-wave"
+              src="../../src/assets/AboutUs/bg-wave.svg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div
+          className="position-absolute text-white"
+          style={{
+            zIndex: 6,
+            top: "8%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <h1 className="main-text-s64">Our Community</h1>
+        </div>
+        <div
+          className="position-absolute text-white"
+          style={{
+            zIndex: 6,
+            bottom: "5%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+            textAlign: "center",
+          }}
+        >
+          <h1 className="main-text-s50">“ Tailored IT solutions </h1>
+          <h1 className="main-text-s50">
+            we're ready to consult and serve you. ”
+          </h1>
+        </div>
       </div>
     </div>
   );
