@@ -169,7 +169,12 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <div className="position-relative community-layout"></div>
+      <div className="position-relative community-layout bg-community">
+        <div className="filter-bg-community-1"></div>
+        <div className="filter-bg-community-2"></div>
+        <div className="circle-bg-community-1"></div>
+        <div className="circle-bg-community-2"></div>
+      </div>
     </div>
   );
 };
