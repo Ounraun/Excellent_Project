@@ -2,10 +2,12 @@ import React from "react";
 import ParticlesComponent from "../../components/Particles/Particles";
 import styles from "../../components/Particles/Particle.module.css";
 import "./AboutUs.Module.css";
+// import Footer from "../../components/Footer";
 
 const AboutUs = () => {
   return (
     <div>
+      {/* hero  */}
       <div
         className="position-relative bg-dark"
         style={{
@@ -47,6 +49,8 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+
+      {/* service and solutions */}
       <div className="position-relative" style={{ height: "248vh" }}>
         <img
           src="src/assets/AboutUs/bg-solutions.svg"
@@ -170,6 +174,8 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+
+      {/* community */}
       <div className="position-relative community-layout bg-community">
         <div className="filter-bg-community-1"></div>
         <div className="filter-bg-community-2"></div>
@@ -215,6 +221,15 @@ const AboutUs = () => {
           <h1 className="main-text-s50">
             we're ready to consult and serve you. ”
           </h1>
+        </div>
+      </div>
+
+      {/* contact */}
+      <div className="position-relative contact-layout">
+        <div className="position-absolute contact-item">
+          <h3 className=" text-blue bold-text">
+            The Excellent Communication
+          </h3>
         </div>
       </div>
     </div>

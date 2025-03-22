@@ -18,6 +18,11 @@
     font-size: 32px;
     color: white;
 }
+.main-text-s50{
+    font-family: "Saira";
+    font-size: 50px;
+    color: white;
+}
 
 .main-text-s64 {
   font-family: "Saira";
@@ -47,6 +52,10 @@
 
 .bold-text {
   font-weight: 700 !important;
+}
+.text-blue{
+  color: #39A6DE;
+  font-size: 32px;
 }
 
 .vl {
@@ -160,3 +169,19 @@ text-shadow: 0px 1px 10px rgba(244, 214, 105, 0.6); /* สี F4D669 ที่�
   z-index: 5;
   /* left: -1%; */
 }
+
+.contact-layout {
+  width: 100%;
+  height: 684px;
+  background: linear-gradient(90deg, #052638 0%, #000000 100%);
+  border-top: 1px solid rgba(214, 186, 186, 0.5); /* เส้นขอบเฉพาะด้านบนพร้อมความโปร่งใส 50% */
+}
+
+.contact-item{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 80px 150px ;
+}
+
+
