@@ -228,7 +228,7 @@ const AboutUs = () => {
       </div>
 
       {/* contact */}
-      <div className="container-fluid  contact-layout">
+      {/* <div className="container-fluid  contact-layout">
         <div className="contact-item  row">
           <h3 className=" text-blue bold-text">The Excellent Communication</h3>
           <div className="row" style={{ marginTop: "30px" }}>
@@ -255,8 +255,72 @@ const AboutUs = () => {
               </p>
               <img src={Map} alt="" />
             </div>
+            <div className="col-3">
+              <p className="text-white">Menu</p>
+              <p className="text-white">Service and Solution</p>
+              <p className="text-white">Network and solutions</p>
+            </div>
             <div className="col-3"></div>
-            <div className="col-3"></div>
+          </div>
+        </div>
+      </div> */}
+
+      {/* contact */}
+      <div className="container-fluid contact-layout py-5 px-5 ">
+        <div className="row">
+          <h1 className="contact-title">The Excellent Communication</h1>
+        </div>
+        <div className="row">
+          {/* ด้านซ้าย */}
+          <div className="col-md-6 mb-4">
+            <p className="mt-3 text-white" style={{ fontSize: "1.2rem" }}>
+              02-000-8180
+            </p>
+            <img src={emailIcon} alt="Email" />
+            <img src={facebookIcon} alt="Facebook" />
+            <p className="mb-3 text-white" style={{ fontSize: "1rem" }}>
+              290 C2 Building Raintree Office Garden 1A, Soi Soonvijai 4, Bang
+              Kapa, Huai Khwang, Bangkok 10310
+            </p>
+            <img src={Map} alt="Map" />
+          </div>
+          <div className="col-md-6">
+            <div className="row">
+              <h2 className="mb-4 text-white" style={{ fontFamily: "Saira" }}>
+                Menu
+              </h2>
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <div
+                  className="mb-3 text-white"
+                  style={{ fontFamily: "Saira" }}
+                >
+                  <h5>Service and Solutions</h5>
+                  <ul className="list-unstyled ps-3">
+                    <li>Network and solutions</li>
+                    <li>Data center</li>
+                    <li>Data management</li>
+                    <li>Collaboration management</li>
+                    <li>Multimedia solution</li>
+                    <li>Digital transformation</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div
+                  className="mb-3 text-white"
+                  style={{ fontFamily: "Saira" }}
+                >
+                  <h5>Our Community</h5>
+                  <ul className="list-unstyled ps-3">
+                    <li>Company events</li>
+                    <li>Knowledge</li>
+                    <li>Society</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
