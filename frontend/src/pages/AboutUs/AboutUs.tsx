@@ -2,6 +2,9 @@ import React from "react";
 import ParticlesComponent from "../../components/Particles/Particles";
 import styles from "../../components/Particles/Particle.module.css";
 import "./AboutUs.Module.css";
+import emailIcon from "../../assets/AboutUs/icon-email.svg";
+import facebookIcon from "../../assets/AboutUs/icon-facebook.svg";
+import Map from "../../assets/AboutUs/map.svg";
 // import Footer from "../../components/Footer";
 
 const AboutUs = () => {
@@ -225,11 +228,36 @@ const AboutUs = () => {
       </div>
 
       {/* contact */}
-      <div className="position-relative contact-layout">
-        <div className="position-absolute contact-item">
-          <h3 className=" text-blue bold-text">
-            The Excellent Communication
-          </h3>
+      <div className="container-fluid  contact-layout">
+        <div className="contact-item  row">
+          <h3 className=" text-blue bold-text">The Excellent Communication</h3>
+          <div className="row" style={{ marginTop: "30px" }}>
+            <div className="col-6">
+              <p className="text-white main-text-s24">02-000-8180</p>
+              <div className="row" style={{ marginTop: "20px", width: "100%" }}>
+                <img
+                  src={emailIcon}
+                  alt=""
+                  style={{ zIndex: 99, width: "100px", height: "100px" }}
+                />
+                <img
+                  src={facebookIcon}
+                  alt=""
+                  style={{ zIndex: 99, width: "100px", height: "100px" }}
+                />
+              </div>
+              <p
+                className="main-text-s16 text-white"
+                style={{ marginTop: "30px" }}
+              >
+                290 C2 Building Raintree Office Garden 1A, Soi Soonvijai 4, Bang
+                Kapa, Huai Khwang, Bangkok 10310
+              </p>
+              <img src={Map} alt="" />
+            </div>
+            <div className="col-3"></div>
+            <div className="col-3"></div>
+          </div>
         </div>
       </div>
     </div>
