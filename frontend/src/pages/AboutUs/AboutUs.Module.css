@@ -68,9 +68,9 @@
 }
 
 .vl {
-  height: 277px;
+  height: 350px;
   position: absolute;
-  bottom: 11%;
+  bottom: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   /* transform: translateX(-50%,-50%); */
@@ -92,7 +92,7 @@
     position: absolute;
     width: 100%;
     text-align: center;
-    bottom: 1%;
+    bottom: 8%;
 }
 
 .iso-item-content {
@@ -181,9 +181,13 @@ text-shadow: 0px 1px 10px rgba(244, 214, 105, 0.6); /* สี F4D669 ที่�
 
 .contact-layout {
   width: 100%;
-  height: 684px;
+  height: 590px;
   background: linear-gradient(90deg, #052638 0%, #000000 100%);
   border-top: 1px solid rgba(214, 186, 186, 0.5); /* เส้นขอบเฉพาะด้านบนพร้อมความโปร่งใส 50% */
+  display: flex;               /* ใช้ Flexbox */
+  flex-direction: column;      /* จัดเรียงตามแนวตั้ง */
+  justify-content: center;     /* จัดกึ่งกลางแนวตั้ง */
+  /* align-items: center;         จัดกึ่งกลางแนวนอน */
 }
 
 .contact-item{
@@ -200,3 +204,45 @@ text-shadow: 0px 1px 10px rgba(244, 214, 105, 0.6); /* สี F4D669 ที่�
   color: #39A6DE;
 }
 
+/* ตัวอย่าง keyframes สำหรับเอฟเฟกต์ลอย */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+/* สร้างคลาส gem-float สำหรับผูกกับ element */
+.gem-float-1 {
+  animation: float 3s ease-in-out infinite; 
+  animation-delay: 0.2s;
+  /* 3s = ระยะเวลารอบละ 3 วินาที, ease-in-out = ความลื่นไหล, infinite = วนซ้ำตลอด */
+}
+.gem-float-2 {
+  animation: float 4s ease-in-out infinite; 
+  animation-delay: 0.4s;
+}
+.gem-float-3 {
+  animation: float 5s ease-in-out infinite; 
+  animation-delay: 0.6s;
+}
+.gem-float-4 {
+  animation: float 3s ease-in-out infinite; 
+  animation-delay: 0.8s;
+}
+.gem-float-5 {
+  animation: float 4s ease-in-out infinite; 
+  animation-delay: 1s;
+}
+.gem-float-6 {
+  animation: float 3s ease-in-out infinite; 
+  animation-delay: 1.2s;
+}
+.hovered {
+  animation: none; /* หยุด floating */
+  transform: scale(1.2); /* ขยายขนาด */
+}

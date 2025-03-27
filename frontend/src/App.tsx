@@ -10,7 +10,9 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import NAS from "./pages/NAS";
-import MeetingRooms from "./pages/MeetingRooms";
+import MeetingRooms from "./pages/Meeting/MeetingRooms";
+import Rebooking from "./pages/Meeting/Rebooking";
+import BookingConfirm from "./pages/Meeting/BookingConfirm";
 import OurCommunity from "./pages/OurCommunity";
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/nas" element={<NAS />} />
           <Route path="/meeting-rooms" element={<MeetingRooms />} />
+          <Route path="/rebooking" element={<Rebooking />} />
+          <Route path="/booking-confirm" element={<BookingConfirm />} />
           <Route path="/our-community" element={<OurCommunity />} />
         </Routes>
       </main>

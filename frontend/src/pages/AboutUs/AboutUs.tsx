@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import ParticlesComponent from "../../components/Particles/Particles";
 import styles from "../../components/Particles/Particle.module.css";
 import "./AboutUs.Module.css";
 import emailIcon from "../../assets/AboutUs/icon-email.svg";
 import facebookIcon from "../../assets/AboutUs/icon-facebook.svg";
 import Map from "../../assets/AboutUs/map.svg";
+import CommunityCard from "./CommunityCard";
 // import Footer from "../../components/Footer";
 
 const AboutUs = () => {
+  const [isHoveredGem1, setIsHoveredGem1] = useState(false);
+  const [isHoveredGem2, setIsHoveredGem2] = useState(false);
+  const [isHoveredGem3, setIsHoveredGem3] = useState(false);
+  const [isHoveredGem4, setIsHoveredGem4] = useState(false);
+  const [isHoveredGem5, setIsHoveredGem5] = useState(false);
+  const [isHoveredGem6, setIsHoveredGem6] = useState(false);
+
+  const particles = useMemo(() => {
+    return <ParticlesComponent className={styles.particle} />;
+  }, []);
+
   return (
     <div>
       {/* hero  */}
@@ -22,7 +34,7 @@ const AboutUs = () => {
         }}
       >
         <div className={styles.particleWrapper}>
-          <ParticlesComponent className={styles.particle} />
+          {particles}
           <div className="content-layout">
             <div className="p-4">
               <h1
@@ -54,27 +66,33 @@ const AboutUs = () => {
       </div>
 
       {/* service and solutions */}
-      <div className="position-relative" style={{ height: "248vh" }}>
+      <div
+        className="position-relative"
+        style={{ height: "293vh", overflow: "hidden" }}
+      >
+        {" "}
+        {/* Background */}
         <img
           src="src/assets/AboutUs/bg-solutions.svg"
-          className="img-fluid w-100 h-100 object-fit-cover"
           alt="Background"
+          className="w-100 h-100 object-fit-cover"
+          style={{ objectPosition: "center" }}
         />
         {/* Background */}
         <div
           className="position-absolute text-white"
           style={{
-            top: "40% ",
+            top: "27% ",
             left: "50%",
             transform: "translate(-50%, -50%)",
           }}
         >
           <h1
-            className="text-white text-center"
+            className="text-white text-center fw-bold display-4 display-md-3 display-lg-1"
             style={{
               fontFamily: "Saira, sans-serif",
-              fontWeight: 700,
-              fontSize: "64px",
+              // fontWeight: 700,
+              // fontSize: "64px",
               lineHeight: "142%",
             }}
           >
@@ -83,79 +101,177 @@ const AboutUs = () => {
             SOLUTIONS
           </h1>
         </div>
-        {/* Background */}
         {/* Gems 1 */}
         <div
-          className="position-absolute"
+          className={`position-absolute gem-float-1 ${
+            isHoveredGem1 ? "hovered" : ""
+          }`}
           style={{
-            top: "6% ",
-            left: "20%",
+            top: "8% ",
+            left: "25%",
+            width: "300px",
+            height: "300px",
+            zIndex: 5,
+          }}
+          onMouseEnter={() => {
+            setIsHoveredGem1(true);
+          }}
+          onMouseLeave={() => {
+            setIsHoveredGem1(false);
           }}
         >
-          <img src="src/assets/AboutUs/Gem1.svg" alt="" />
+          <img
+            src="src/assets/AboutUs/Gem1.svg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
         {/* Gems 2 */}
         <div
-          className="position-absolute"
+          className={`position-absolute gem-float-2 ${
+            isHoveredGem2 ? "hovered" : ""
+          }`}
           style={{
-            top: "22% ",
-            left: "2%",
+            top: "16% ",
+            left: "10%",
+            width: "300px",
+            height: "300px",
+            zIndex: 5,
+          }}
+          onMouseEnter={() => {
+            setIsHoveredGem2(true);
+          }}
+          onMouseLeave={() => {
+            setIsHoveredGem2(false);
           }}
         >
-          <img src="src/assets/AboutUs/Gem2.svg" alt="" />
+          <img
+            src="src/assets/AboutUs/Gem2.svg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
         {/* Gems 3 */}
         <div
-          className="position-absolute"
+          className={`position-absolute gem-float-3 ${
+            isHoveredGem3 ? "hovered" : ""
+          }`}
           style={{
-            top: "39% ",
-            left: "4%",
-            zIndex: 1,
+            top: "27% ",
+            left: "17%",
+            zIndex: 5,
+            width: "320px",
+            height: "320px",
+          }}
+          onMouseEnter={() => {
+            setIsHoveredGem3(true);
+          }}
+          onMouseLeave={() => {
+            setIsHoveredGem3(false);
           }}
         >
-          <img src="src/assets/AboutUs/Gem3.svg" alt="" />
+          <img
+            src="src/assets/AboutUs/Gem3.svg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
         {/* Gems 4 */}
         <div
-          className="position-absolute"
+          className={`position-absolute gem-float-4 ${
+            isHoveredGem4 ? "hovered" : ""
+          }`}
           style={{
-            top: "7% ",
-            right: "18%",
+            top: "8% ",
+            right: "27%",
+            width: "280px",
+            height: "280px",
+            zIndex: 5,
+          }}
+          onMouseEnter={() => {
+            setIsHoveredGem4(true);
+          }}
+          onMouseLeave={() => {
+            setIsHoveredGem4(false);
           }}
         >
-          <img src="src/assets/AboutUs/Gem4.svg" alt="" />
+          <img
+            src="src/assets/AboutUs/Gem4.svg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
         {/* Gems 5 */}
         <div
-          className="position-absolute"
+          className={`position-absolute gem-float-5 ${
+            isHoveredGem5 ? "hovered" : ""
+          }`}
           style={{
-            top: "20% ",
-            right: "3%",
+            top: "16% ",
+            right: "13%",
+            width: "300px",
+            height: "300px",
+            zIndex: 5,
+          }}
+          onMouseEnter={() => {
+            setIsHoveredGem5(true);
+          }}
+          onMouseLeave={() => {
+            setIsHoveredGem5(false);
           }}
         >
-          <img src="src/assets/AboutUs/Gem5.svg" alt="" />
+          <img
+            src="src/assets/AboutUs/Gem5.svg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
         {/* Gems 6 */}
         <div
-          className="position-absolute"
+          className={`position-absolute gem-float-6 ${
+            isHoveredGem6 ? "hovered" : ""
+          }`}
           style={{
-            top: "40% ",
-            right: "5%",
-            zIndex: 1,
+            top: "28% ",
+            right: "18%",
+            zIndex: 5,
+            width: "300px",
+            height: "300px",
+          }}
+          onMouseEnter={() => {
+            setIsHoveredGem6(true);
+          }}
+          onMouseLeave={() => {
+            setIsHoveredGem6(false);
           }}
         >
-          <img src="src/assets/AboutUs/Gem6.svg" alt="" />
+          <img
+            src="src/assets/AboutUs/Gem6.svg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
         {/* Gems floor */}
         <div
           className="position-absolute"
           style={{
             top: "0 ",
-            right: "0",
+            right: "14%",
+            width: "70%",
+            // zIndex: 0,
             // transform: "translate(50%,50%)",
           }}
         >
-          <img src="src/assets/AboutUs/Gem-floor.svg" alt="" />
+          {/* <img
+            src="src/assets/AboutUs/Gem-floor.svg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          /> */}
+          <img
+            src="src/assets/AboutUs/Gem-floor.svg"
+            alt=""
+            style={{ width: "100%", height: "100%" }}
+          />
         </div>
         <div className="vl"></div>
         <div className="iso-layout">
@@ -202,17 +318,6 @@ const AboutUs = () => {
           className="position-absolute text-white"
           style={{
             zIndex: 6,
-            top: "8%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <h1 className="main-text-s64">Our Community</h1>
-        </div>
-        <div
-          className="position-absolute text-white"
-          style={{
-            zIndex: 6,
             bottom: "5%",
             left: "50%",
             transform: "translate(-50%, -50%)",
@@ -225,45 +330,19 @@ const AboutUs = () => {
             we're ready to consult and serve you. ”
           </h1>
         </div>
-      </div>
-
-      {/* contact */}
-      {/* <div className="container-fluid  contact-layout">
-        <div className="contact-item  row">
-          <h3 className=" text-blue bold-text">The Excellent Communication</h3>
-          <div className="row" style={{ marginTop: "30px" }}>
-            <div className="col-6">
-              <p className="text-white main-text-s24">02-000-8180</p>
-              <div className="row" style={{ marginTop: "20px", width: "100%" }}>
-                <img
-                  src={emailIcon}
-                  alt=""
-                  style={{ zIndex: 99, width: "100px", height: "100px" }}
-                />
-                <img
-                  src={facebookIcon}
-                  alt=""
-                  style={{ zIndex: 99, width: "100px", height: "100px" }}
-                />
-              </div>
-              <p
-                className="main-text-s16 text-white"
-                style={{ marginTop: "30px" }}
-              >
-                290 C2 Building Raintree Office Garden 1A, Soi Soonvijai 4, Bang
-                Kapa, Huai Khwang, Bangkok 10310
-              </p>
-              <img src={Map} alt="" />
-            </div>
-            <div className="col-3">
-              <p className="text-white">Menu</p>
-              <p className="text-white">Service and Solution</p>
-              <p className="text-white">Network and solutions</p>
-            </div>
-            <div className="col-3"></div>
-          </div>
+        <div
+          className="position-absolute text-white"
+          style={{
+            zIndex: 6,
+            top: "5%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <h1 className="main-text-s64">Our Community</h1>
         </div>
-      </div> */}
+        <CommunityCard />
+      </div>
 
       {/* contact */}
       <div className="container-fluid contact-layout py-5 px-5 ">
