@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./CommunityCard.module.css"; // Ensure CSS module is typed
+// import communityFloor from "../../assets/AboutUs/Community-floor.svg";
 
 interface CommunityCardProps {
   // Define the expected props here
@@ -19,7 +20,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
       style={{
         zIndex: 99,
         position: "relative",
-        top: "28%",
+        top: "30%",
         left: "50%",
         transform: "translate(-50%, -50%)",
       }}
@@ -67,9 +68,19 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
               </div>
             </div>
             <div className={styles.cardTitle}>Company events</div>
-          </label>
-          
 
+            {/* <div className={styles.communityFloorContainer}> */}
+            {/* <img
+                className={styles.communityFloor}
+                src={communityFloor}
+              alt="Community floor"
+              /> */}
+
+            {/* </div> */}
+            {/* <div className={styles.ellipseContainer}>
+              <div className={styles.ellipse}></div>
+            </div> */}
+          </label>
           <label className={styles.cardLayout} htmlFor="item-2" id="song-2">
             <div className={styles.card}>
               <div className={styles.cardHeader}>

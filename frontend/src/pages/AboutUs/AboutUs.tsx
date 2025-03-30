@@ -125,6 +125,7 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
+          <p className="textInGem">Network solution</p>
         </div>
         {/* Gems 2 */}
         <div
@@ -150,6 +151,7 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
+          <p className="textInGem">Data center</p>
         </div>
         {/* Gems 3 */}
         <div
@@ -160,8 +162,8 @@ const AboutUs = () => {
             top: "27% ",
             left: "17%",
             zIndex: 5,
-            width: "320px",
-            height: "320px",
+            width: "380px",
+            height: "380px",
           }}
           onMouseEnter={() => {
             setIsHoveredGem3(true);
@@ -175,6 +177,7 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
+          <p className="textInGem">Data management</p>
         </div>
         {/* Gems 4 */}
         <div
@@ -184,7 +187,7 @@ const AboutUs = () => {
           style={{
             top: "8% ",
             right: "27%",
-            width: "280px",
+            width: "300px",
             height: "280px",
             zIndex: 5,
           }}
@@ -200,6 +203,7 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
+          <p className="textInGem">Centralize management</p>
         </div>
         {/* Gems 5 */}
         <div
@@ -225,6 +229,7 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
+          <p className="textInGem">Multimedia solution</p>
         </div>
         {/* Gems 6 */}
         <div
@@ -235,8 +240,8 @@ const AboutUs = () => {
             top: "28% ",
             right: "18%",
             zIndex: 5,
-            width: "300px",
-            height: "300px",
+            width: "330px",
+            height: "330px",
           }}
           onMouseEnter={() => {
             setIsHoveredGem6(true);
@@ -250,23 +255,17 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
+          <p className="textInGem">Digital transformation</p>
         </div>
         {/* Gems floor */}
         <div
           className="position-absolute"
           style={{
-            top: "0 ",
-            right: "14%",
-            width: "70%",
-            // zIndex: 0,
-            // transform: "translate(50%,50%)",
+            top: "-12%",
+            right: 0,
+            width: "100%",
           }}
         >
-          {/* <img
-            src="src/assets/AboutUs/Gem-floor.svg"
-            alt=""
-            style={{ width: "100%", height: "100%" }}
-          /> */}
           <img
             src="src/assets/AboutUs/Gem-floor.svg"
             alt=""
@@ -342,6 +341,154 @@ const AboutUs = () => {
           <h1 className="main-text-s64">Our Community</h1>
         </div>
         <CommunityCard />
+        <div className="position-absolute backgroundSVG">
+          <svg
+            viewBox="0 0 1440 2090"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{
+              position: "absolute",
+              bottom: "1%",
+              left: 0,
+              width: "100%",
+              height: "100%",
+              zIndex: 3,
+            }}
+          >
+            <g filter="url(#filter0_dddddd_213_108)">
+              <ellipse
+                cx="238.727"
+                cy="247.573"
+                rx="239.727"
+                ry="247.573"
+                transform="matrix(0.992546 0.121869 -0.992546 0.121869 723.457 877)"
+                fill="#3D5B89"
+                fillOpacity="0.08"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_dddddd_213_108"
+                x="-453.156"
+                y="0.800728"
+                width="2335.67"
+                height="1736.77"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset />
+                <feGaussianBlur stdDeviation="9.83897" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0.719743 0 0 0 0 0.894904 0 0 0 0 1 0 0 0 1 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_213_108"
+                />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="-8.04927" />
+                <feGaussianBlur stdDeviation="19.6779" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0.517725 0 0 0 0 0.835172 0 0 0 0 1 0 0 0 1 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="effect1_dropShadow_213_108"
+                  result="effect2_dropShadow_213_108"
+                />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="-40.2464" />
+                <feGaussianBlur stdDeviation="68.8728" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0.55 0 0 0 0 1 0 0 0 1 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="effect2_dropShadow_213_108"
+                  result="effect3_dropShadow_213_108"
+                />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="-60.3695" />
+                <feGaussianBlur stdDeviation="137.746" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0.209028 0 0 0 0 0.716667 0 0 0 0 0.358333 0 0 0 1 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="effect3_dropShadow_213_108"
+                  result="effect4_dropShadow_213_108"
+                />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="-73.785" />
+                <feGaussianBlur stdDeviation="236.135" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0.784314 0 0 0 0 0.596078 0 0 0 0 0.862745 0 0 0 1 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="effect4_dropShadow_213_108"
+                  result="effect5_dropShadow_213_108"
+                />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="-67.0773" />
+                <feGaussianBlur stdDeviation="413.237" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0.666801 0 0 0 0 0.271181 0 0 0 0 0.916667 0 0 0 1 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="effect5_dropShadow_213_108"
+                  result="effect6_dropShadow_213_108"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect6_dropShadow_213_108"
+                  result="shape"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </div>
       </div>
 
       {/* contact */}

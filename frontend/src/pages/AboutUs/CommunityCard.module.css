@@ -38,15 +38,17 @@ input[type="radio"] {
   left: 0;
   right: 0;
   width: 60%;
-  height:100%;
-   margin: auto;
+  height:129%;
+  margin: auto;
+  z-index: 70;
+  /* margin-bottom: 70px; */
 }
 
 
 .card {
   position: absolute;
   width: 100%;
-  height:89%;
+  height:80%;
   left: 0;
   right: 0;
   margin: auto;
@@ -60,6 +62,7 @@ input[type="radio"] {
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  z-index: 5;
 }
 
 .cardHeader {
@@ -76,10 +79,19 @@ input[type="radio"] {
   bottom: 0 ;
   left: 50%;
   transform: translateX(-50%);
-  color: gold;
-  font-weight: 600;
-  font-size: 1.2rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  color: #0E8DDC;
+  width: 100%;
+  text-align: center;
+
+  /* whith effect 2 */
+  text-shadow: 0px 5px 13.3px rgba(255, 255, 255, 0.21);
+  font-family: Saira;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 3.375rem */
+  letter-spacing: 0.045rem;
+
 }
 
 .cardBody {
@@ -128,13 +140,18 @@ input[type="radio"] {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 :global .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* เพิ่มระยะห่างระหว่างแต่ละ label */
   position: relative;
   width: 75%;
   height: 70%;
   margin-bottom: 20px;
+  z-index: 2;
 }
 
 .myImage {
@@ -147,7 +164,7 @@ input[type="radio"] {
 :global(#item-1:checked ~ .cards #song-3),
 :global(#item-2:checked ~ .cards #song-1),
 :global(#item-3:checked ~ .cards #song-2) {
-  transform: translateX(-90%) scale(0.8);
+  transform: translateX(-130%) scale(0.8);
   opacity: 0.4;
   z-index: 0;
 }
@@ -155,7 +172,7 @@ input[type="radio"] {
 :global(#item-1:checked ~ .cards #song-2),
 :global(#item-2:checked ~ .cards #song-3),
 :global(#item-3:checked ~ .cards #song-1) {
-  transform: translateX(90%) scale(0.8);
+  transform: translateX(130%) scale(0.8);
   opacity: 0.4;
   z-index: 0;
 }
@@ -262,4 +279,64 @@ input[type="radio"] {
 #item-3:checked ~ .player #test {
   transform: translateY(-80px);
 }
+.communityFloorContainer{
+  position: absolute;
+  bottom: 14%;
+  left: -145%;
+  width: 160%;   
+  height: 160px;  
+  margin: 50px auto;
+  z-index: 1;
+  /* overflow: visible; ให้ลูกหลานที่ออกนอก container ยังแสดงอยู่ */
+}
+.communityFloorContainer svg {
+  width: 100%;
+  height: auto; /* หรือกำหนดเป็นค่าเฉพาะ เช่น 160px ตาม container */
+  display: block; /* ป้องกันปัญหา margin-bottom ที่เกิดจาก inline element */
+}
+
+.communityFloor{
+  width: 100%;
+  height: auto;
+  display: block; /* เพื่อเอา margin ที่ไม่ต้องการออก */
+  box-shadow: none !important;
+  z-index: 1;
+}
+
+
+/* .ellipseContainer { */
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* left: -20%; */
+  /* width: 500px;   ปรับตามต้องการ */
+  /* height: 110px;  ปรับตามต้องการ */
+  /* margin: 50px auto;  */
+/* } */
+
+/* .ellipse {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%; */
+  /* border-radius: 50%; ทำให้เป็นวงรี */
+
+  /* เส้นขอบ (border) ที่สีใกล้เคียง Glow */
+  /* border: 2px solid rgba(74, 202, 255,0.1); */
+
+  /* ไล่สีจากกลางไปขอบเพื่อให้เอฟเฟกต์เรืองแสง */
+  /* background: radial-gradient(
+    ellipse at center,
+    rgba(74, 202, 255, 0.6) 0%,
+    rgba(74, 202, 255, 0.3) 50%,
+    rgba(74, 202, 255, 0)   100%
+  ); */
+
+  /* เงารอบนอก + เงาด้านใน (inset) เพื่อสร้าง Glow */
+  /* box-shadow: */
+    /* Glow รอบนอก */
+    /* 0 0 40px 20px rgba(74, 202, 255, 0.3), */
+    /* Glow ข้างใน */
+    /* inset 0 0 40px 10px rgba(74, 202, 255, 0.2); */
+/* } */
 
