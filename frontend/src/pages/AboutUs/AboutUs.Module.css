@@ -281,4 +281,24 @@ text-shadow: 0px 1px 10px rgba(244, 214, 105, 0.6); /* สี F4D669 ที่�
   pointer-events: none;
 } */
 
+.card-description {
+  color: #fff;
+  font-family: 'Saira', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.4;
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  max-height: 60px; /* 3 lines * line-height * font-size */
+  padding: 0 1rem;
+  word-wrap: break-word;
+  white-space: normal;
+  box-sizing: border-box;
+}
+
 

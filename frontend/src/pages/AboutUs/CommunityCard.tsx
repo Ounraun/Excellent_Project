@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./CommunityCard.module.css"; // Ensure CSS module is typed
 // import communityFloor from "../../assets/AboutUs/Community-floor.svg";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 interface CommunityCardProps {
   // Define the expected props here
   title?: string; // Example property
@@ -14,7 +16,16 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
     document.body.classList.toggle("blue");
   };
 
-  const [latestPosts, setLatestPosts] = useState({
+  interface Post {
+    main_image?: { url: string };
+    [key: string]: string | number | boolean | object | undefined; // Add other properties as needed
+  }
+
+  const [latestPosts, setLatestPosts] = useState<{
+    companyEvents: Post | null;
+    knowledge: Post | null;
+    society: Post | null;
+  }>({
     companyEvents: null,
     knowledge: null,
     society: null,
@@ -25,7 +36,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
   const fetchLatestPost = async (category: CategoryType, key: string) => {
     try {
       const response = await fetch(
-        `http://localhost:1337/api/blog-posts?filters[category][name][$eq]=${encodeURIComponent(
+        `${apiUrl}/api/blog-posts?filters[category][name][$eq]=${encodeURIComponent(
           category
         )}&sort=updatedAt:desc&pagination[page]=1&pagination[pageSize]=1&populate=*`
       );
@@ -43,134 +54,162 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
     fetchLatestPost("Society", "society");
   }, []);
 
+  const companyEventsImageUrl =
+    apiUrl + latestPosts.companyEvents?.main_image?.url;
+  const companyEventsContent = latestPosts.companyEvents?.content;
+  const companyEventsDate = latestPosts.companyEvents?.createdAt
+    ? new Date(
+        latestPosts.companyEvents.createdAt as string
+      ).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : "Date not available";
+
+  const societyImageUrl = apiUrl + latestPosts.society?.main_image?.url;
+  const societyContent = latestPosts.society?.content;
+  const societyDate = latestPosts.society?.createdAt
+    ? new Date(latestPosts.society.createdAt as string).toLocaleDateString(
+        "en-GB",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }
+      )
+    : "Date not available";
+
+  const knowledgeImageUrl = apiUrl + latestPosts.knowledge?.main_image?.url;
+  const knowledgeContent = latestPosts.knowledge?.content;
+  const knowledgeDate = latestPosts.knowledge?.createdAt
+    ? new Date(latestPosts.knowledge.createdAt as string).toLocaleDateString(
+        "en-GB",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }
+      )
+    : "Date not available";
+
+  const truncateText = (text: string, maxLength: number = 150) => {
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength) + "...";
+  };
+
   return (
-    console.log(latestPosts.companyEvents.main_image.url),
-    (
-      <div
-        className={styles.wrapper}
-        style={{
-          zIndex: 99,
-          position: "relative",
-          top: "30%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <div className={styles.container}>
-          <input
-            type="radio"
-            name="slider"
-            id="item-1"
-            defaultChecked
-            onChange={handleRadioChange}
-          />
-          <input
-            type="radio"
-            name="slider"
-            id="item-2"
-            onChange={handleRadioChange}
-          />
-          <input
-            type="radio"
-            name="slider"
-            id="item-3"
-            onChange={handleRadioChange}
-          />
+    <div
+      className={styles.wrapper}
+      style={{
+        zIndex: 99,
+        position: "relative",
+        top: "30%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <div className={styles.container}>
+        <input
+          type="radio"
+          name="slider"
+          id="item-1"
+          defaultChecked
+          onChange={handleRadioChange}
+        />
+        <input
+          type="radio"
+          name="slider"
+          id="item-2"
+          onChange={handleRadioChange}
+        />
+        <input
+          type="radio"
+          name="slider"
+          id="item-3"
+          onChange={handleRadioChange}
+        />
 
-          <div className="cards">
-            {latestPosts.companyEvents ? (
-              <label
-                className={styles.cardLayout}
-                htmlFor="item-1"
-                id="companyEvents"
-              >
-                <div className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <img
-                      className={styles.myImage}
-                      src="http://localhost:1337/uploads/image_802199d455.png"
-                      alt="companyEvents"
-                    />
-                  </div>
-                  <div className={styles.cardBody}>
-                    <p className={styles.description}>
-                      The most anticipated event for office workers! This year,
-                      TEC Outing takes us on an exciting trip to the Pearl
-                      Island of Vietnam – Phu Quoc Island.
-                    </p>
-                    <p className={styles.date}>25 December 2024</p>
-                    <a href="#" className={styles.readMore}>
-                      Read more
-                    </a>
-                  </div>
-                </div>
-                <div className={styles.cardTitle}>Company events</div>
-              </label>
-            ) : (
-              <p>Loading...</p>
-            )}
-
-            <label className={styles.cardLayout} htmlFor="item-2" id="song-2">
+        <div className="cards">
+          {latestPosts.companyEvents ? (
+            <label
+              className={styles.cardLayout}
+              htmlFor="item-1"
+              id="communityEvents"
+            >
               <div className={styles.card}>
                 <div className={styles.cardHeader}>
                   <img
                     className={styles.myImage}
-                    src="https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80"
-                    alt="song"
+                    src={`${companyEventsImageUrl}`}
+                    alt="companyEvents"
                   />
                 </div>
                 <div className={styles.cardBody}>
                   <p className={styles.description}>
-                    The most anticipated event for office workers! This year,
-                    TEC Outing takes us on an exciting trip to the Pearl Island
-                    of Vietnam – Phu Quoc Island.
+                    {truncateText(String(companyEventsContent))}
                   </p>
-                  <p className={styles.date}>25 December 2024</p>
+                  <p className={styles.date}>{companyEventsDate}</p>
                   <a href="#" className={styles.readMore}>
                     Read more
                   </a>
                 </div>
               </div>
-              <div className={styles.cardTitle}>Knowledge</div>
+              <div className={styles.cardTitle}>Company events</div>
             </label>
-            <label className={styles.cardLayout} htmlFor="item-3" id="song-3">
-              <div className={styles.card}>
-                {/* ส่วนรูปภาพด้านบน + ชื่อ GrandWorld */}
-                <div className={styles.cardHeader}>
-                  {/* <div className={styles.cardTitle}>GRANDWORLD</div> */}
-                  <img
-                    className={styles.myImage}
-                    src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="song"
-                  />
-                </div>
+          ) : (
+            <p>Loading...</p>
+          )}
 
-                {/* ส่วนเนื้อหา (คำอธิบาย, วันที่, ลิงก์) */}
-                <div className={styles.cardBody}>
-                  <p className={styles.description}>
-                    The most anticipated event for office workers! This year,
-                    TEC Outing takes us on an exciting trip to the Pearl Island
-                    of Vietnam – Phu Quoc Island.
-                  </p>
-                  <p className={styles.date}>25 December 2024</p>
-                  <a href="#" className={styles.readMore}>
-                    Read more
-                  </a>
-                </div>
+          <label className={styles.cardLayout} htmlFor="item-2" id="knowledge">
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
+                <img
+                  className={styles.myImage}
+                  src={`${knowledgeImageUrl}`}
+                  alt="knowledge"
+                />
               </div>
-              <div className={styles.cardTitle}>Society</div>
+              <div className={styles.cardBody}>
+                <p className={styles.description}>
+                  {truncateText(String(knowledgeContent))}
+                </p>
+                <p className={styles.date}>{knowledgeDate}</p>
+                <a href="#" className={styles.readMore}>
+                  Read more
+                </a>
+              </div>
+            </div>
+            <div className={styles.cardTitle}>Knowledge</div>
+          </label>
+          <label className={styles.cardLayout} htmlFor="item-3" id="society">
+            <div className={styles.card}>
+              {/* ส่วนรูปภาพด้านบน + ชื่อ GrandWorld */}
+              <div className={styles.cardHeader}>
+                {/* <div className={styles.cardTitle}>GRANDWORLD</div> */}
+                <img
+                  className={styles.myImage}
+                  src={`${societyImageUrl}`}
+                  alt="society"
+                />
+              </div>
 
-              {/* <img
-              className={styles.myImage}
-              src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-              alt="song"
-            />
-            <div>sdfdsf</div> */}
-            </label>
-          </div>
+              {/* ส่วนเนื้อหา (คำอธิบาย, วันที่, ลิงก์) */}
+              <div className={styles.cardBody}>
+                <p className={styles.description}>
+                  {truncateText(String(societyContent))}
+                </p>
+                <p className={styles.date}>{societyDate}</p>
+                <a href="#" className={styles.readMore}>
+                  Read more
+                </a>
+              </div>
+            </div>
+            <div className={styles.cardTitle}>Society</div>
+          </label>
         </div>
       </div>
-    )
+    </div>
   );
 };
 

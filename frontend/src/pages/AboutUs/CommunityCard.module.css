@@ -4,12 +4,12 @@
   box-sizing: border-box;
 }
 
-html, body {
+/* html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-}
+} */
 
 .wrapper {
   display: flex;
@@ -161,33 +161,33 @@ input[type="radio"] {
   object-fit: cover;
 }
 
-:global(#item-1:checked ~ .cards #song-3),
-:global(#item-2:checked ~ .cards #song-1),
-:global(#item-3:checked ~ .cards #song-2) {
+:global(#item-1:checked ~ .cards #society),
+:global(#item-2:checked ~ .cards #communityEvents),
+:global(#item-3:checked ~ .cards #knowledge) {
   transform: translateX(-130%) scale(0.8);
   opacity: 0.4;
   z-index: 0;
 }
 
-:global(#item-1:checked ~ .cards #song-2),
-:global(#item-2:checked ~ .cards #song-3),
-:global(#item-3:checked ~ .cards #song-1) {
+:global(#item-1:checked ~ .cards #knowledge),
+:global(#item-2:checked ~ .cards #society),
+:global(#item-3:checked ~ .cards #communityEvents) {
   transform: translateX(130%) scale(0.8);
   opacity: 0.4;
   z-index: 0;
 }
 
-:global(#item-1:checked ~ .cards #song-1),
-:global(#item-2:checked ~ .cards #song-2),
-:global(#item-3:checked ~ .cards #song-3) {
+:global(#item-1:checked ~ .cards #communityEvents),
+:global(#item-2:checked ~ .cards #knowledge),
+:global(#item-3:checked ~ .cards #society) {
   transform: translateX(0) scale(1);
   opacity: 1;
   z-index: 1;
 }
 
-:global(#item-1:checked ~ .cards #song-1 img),
-:global(#item-2:checked ~ .cards #song-2 img),
-:global(#item-3:checked ~ .cards #song-3 img) {
+:global(#item-1:checked ~ .cards #communityEvents img),
+:global(#item-2:checked ~ .cards #knowledge img),
+:global(#item-3:checked ~ .cards #society img) {
   box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
 }
 

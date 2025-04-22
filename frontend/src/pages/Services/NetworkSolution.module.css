@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+.container {
+  min-height: 100vh;
+  background-color: #000;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.network {
+  color: #34a8d5;
+  font-family: Orbitron;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 60.587px;
+  letter-spacing: 1px;
+  display: inline-block;
+}
+
+.solution {
+  color: #FFFFFF;
+  font-family: Orbitron;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 60.587px;
+  letter-spacing: 1px;
+  display: inline-block;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cityImageContainer {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.cityImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1.5) saturate(1.5);
+}
+
+.topBox {
+  background: rgba(0, 27, 45, 0.9);
+  border: 2px solid rgba(16, 151, 249, 0.5);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.introText p {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.description p {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.wireSection, .securitySection, .surveillanceSection, .dataSection {
+  background: rgba(0, 27, 45, 0.9);
+  border: 2px solid rgba(16, 151, 249, 0.5);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.wireSection h2, .securitySection h2, .surveillanceSection h2, .dataSection h2 {
+  color: #72D4ED;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.sectionContent p {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+
+.securitySection {
+  position: relative;
+}
+
+.securitySection::before {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(16, 151, 249, 0.3);
+  border-radius: 50%;
+  filter: blur(10px);
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+.navLink {
+  color: #FFFFFF;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #72D4ED;
+}
+
+@media (max-width: 1200px) {
+  .network, .solution {
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  .mainContent {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .network, .solution {
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .cityImageContainer {
+    height: 150px;
+  }
+
+  .wireSection, .securitySection, .surveillanceSection, .dataSection {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .navLink {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .cityImageContainer {
+    height: 120px;
+  }
+
+  .topBox p, .sectionContent p {
+    font-size: 14px;
+  }
+} 

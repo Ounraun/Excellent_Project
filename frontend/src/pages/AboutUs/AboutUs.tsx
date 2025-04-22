@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ParticlesComponent from "../../components/Particles/Particles";
 import styles from "../../components/Particles/Particle.module.css";
 import "./AboutUs.Module.css";
-import emailIcon from "../../assets/AboutUs/icon-email.svg";
-import facebookIcon from "../../assets/AboutUs/icon-facebook.svg";
-import Map from "../../assets/AboutUs/map.svg";
+
 import CommunityCard from "./CommunityCard";
+import Contact from "../../components/Contact";
 // import Footer from "../../components/Footer";
 
 const AboutUs = () => {
@@ -19,6 +19,46 @@ const AboutUs = () => {
   const particles = useMemo(() => {
     return <ParticlesComponent className={styles.particle} />;
   }, []);
+
+  // state สำหรับข้อมูลที่ต้องการดึงจาก API เช่น Single Type หรือ Blog Posts
+  interface CompanyInfo {
+    address: string;
+    name: string; // Add the name property
+    phone: string; // Add the phone property
+    // Add other properties as needed
+  }
+
+  const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  const location = useLocation();
+
+  // useEffect ควรใส่ตรงนี้ หลังการประกาศ state variables และ apiUrl
+  useEffect(() => {
+    // ตัวอย่าง: ดึงข้อมูล Single Type "Company Info"
+    fetch(`${apiUrl}/api/company-information`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Company Info:", data.data);
+        setCompanyInfo(data.data);
+      })
+      .catch((error) => console.error("Error fetching Company Info:", error));
+  }, [apiUrl]);
+
+  useEffect(() => {
+    if (location.state?.scrollToCommunity) {
+      const communitySection = document.querySelector(".community-layout");
+      if (communitySection) {
+        communitySection.scrollIntoView({ behavior: "smooth" });
+      }
+      // Clear the state after scrolling
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
+  if (companyInfo) {
+    console.log("Company Info:", companyInfo.address);
+  }
 
   return (
     <div>
@@ -491,65 +531,8 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* contact */}
-      <div className="container-fluid contact-layout py-5 px-5 ">
-        <div className="row">
-          <h1 className="contact-title">The Excellent Communication</h1>
-        </div>
-        <div className="row">
-          {/* ด้านซ้าย */}
-          <div className="col-md-6 mb-4">
-            <p className="mt-3 text-white" style={{ fontSize: "1.2rem" }}>
-              02-000-8180
-            </p>
-            <img src={emailIcon} alt="Email" />
-            <img src={facebookIcon} alt="Facebook" />
-            <p className="mb-3 text-white" style={{ fontSize: "1rem" }}>
-              290 C2 Building Raintree Office Garden 1A, Soi Soonvijai 4, Bang
-              Kapa, Huai Khwang, Bangkok 10310
-            </p>
-            <img src={Map} alt="Map" />
-          </div>
-          <div className="col-md-6">
-            <div className="row">
-              <h2 className="mb-4 text-white" style={{ fontFamily: "Saira" }}>
-                Menu
-              </h2>
-            </div>
-            <div className="row">
-              <div className="col-md-6">
-                <div
-                  className="mb-3 text-white"
-                  style={{ fontFamily: "Saira" }}
-                >
-                  <h5>Service and Solutions</h5>
-                  <ul className="list-unstyled ps-3">
-                    <li>Network and solutions</li>
-                    <li>Data center</li>
-                    <li>Data management</li>
-                    <li>Collaboration management</li>
-                    <li>Multimedia solution</li>
-                    <li>Digital transformation</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div
-                  className="mb-3 text-white"
-                  style={{ fontFamily: "Saira" }}
-                >
-                  <h5>Our Community</h5>
-                  <ul className="list-unstyled ps-3">
-                    <li>Company events</li>
-                    <li>Knowledge</li>
-                    <li>Society</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Contact Section */}
+      <Contact />
     </div>
   );
 };
