@@ -281,15 +281,14 @@
   display: inline-block;
 }
 
-.navigation {
+/* .navigation {
   display: flex;
   justify-content: space-between;
   padding: 2rem 0;
   margin-top: auto;
   width: 100%;
-}
-
-.navLink {
+} */
+/* .navLink {
   color: #fff;
   text-align: center;
   font-family: Orbitron;
@@ -298,14 +297,12 @@
   font-weight: 400;
   line-height: normal;
   display: inline-block;
-  text-decoration: none;
-  transition: color 0.3s ease;
 }
+
 
 .navLink:hover {
-  color: #34A8D5;
-}
-
+  color: #72D4ED;
+} */
 @media (max-width: 1200px) {
   .leftSection {
     margin-left: -2rem;

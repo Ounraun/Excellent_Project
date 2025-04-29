@@ -1,9 +1,22 @@
-.content-layout {
+:root {
+  --font-family-saira: "Saira", sans-serif;
+  --color-white: #ffffff;
+}
+
+.contentLayout {
     position: relative;
     z-index: 1;
     margin-top: 30px;
     max-width: 849px;
     margin-left: 100px;
+}
+
+.contentLayout {
+  /* Add your desired styles here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
   
  .main-title {
@@ -12,6 +25,11 @@
     font-size: 100px;
     color: white;
  }
+
+ .main-text {
+  font-family: var(--font-family-saira);
+  color: var(--color-white);
+}
  
  .main-text-s16 {
   font-family: "Saira";
@@ -46,6 +64,19 @@
     margin-top: 600px; 
 }
 
+.bgFade {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  /* ใส่ mask ตามเดิม… */
+  mask-image: radial-gradient(circle at center, #0d0d0e 65%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, #0d0d0e 65%, transparent 100%);
+
+  /* ลดความสว่างลง 50% */
+  filter: brightness(0.5) contrast(1);
+}
 .service-layout {
     background-image: url("src/assets/bg-solutions.svg"); /* ใช้ path ของรูป */
     background-size: contain; /* ปรับให้เต็มพื้นที่ */
@@ -238,27 +269,51 @@ text-shadow: 0px 1px 10px rgba(244, 214, 105, 0.6); /* สี F4D669 ที่�
 .gem-float-1 {
   animation: float 3s ease-in-out infinite; 
   animation-delay: 0.2s;
+  top: 8% ;
+  left: 25%;
+  width: 300px;
+  height: 300px;
   /* 3s = ระยะเวลารอบละ 3 วินาที, ease-in-out = ความลื่นไหล, infinite = วนซ้ำตลอด */
 }
 .gem-float-2 {
   animation: float 4s ease-in-out infinite; 
   animation-delay: 0.4s;
+  top: 16% ;
+  left: 10%;
+  width: 300px;
+  height: 300px;
 }
 .gem-float-3 {
   animation: float 5s ease-in-out infinite; 
   animation-delay: 0.6s;
+  top: 27% ;
+  left: 17%;
+  width: 380px;
+  height: 380px;
 }
 .gem-float-4 {
   animation: float 3s ease-in-out infinite; 
   animation-delay: 0.8s;
+  top: 8% ;
+  right: 27%;
+  width: 300px;
+  height: 280px;
 }
 .gem-float-5 {
   animation: float 4s ease-in-out infinite; 
   animation-delay: 1s;
+  top: 16% ;
+  right: 13%;
+  width: 300px;
+  height: 300px;
 }
 .gem-float-6 {
   animation: float 3s ease-in-out infinite; 
   animation-delay: 1.2s;
+  top: 28% ;
+  right: 18%;
+  width: 330px;
+  height: 330px;
 }
 .hovered {
   animation: none; /* หยุด floating */
@@ -270,16 +325,6 @@ text-shadow: 0px 1px 10px rgba(244, 214, 105, 0.6); /* สี F4D669 ที่�
   height: 100%;
   top: 6%;
 }
-
-/* .backgroundSVG {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-} */
 
 .card-description {
   color: #fff;

@@ -93,7 +93,7 @@
 }
 
 .firstBackground {
-  background-image: url('../../assets/Multimedia/201.png');
+  background-image: url('../../assets/Multimedia/201.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -194,6 +194,15 @@
   backdrop-filter: blur(10px);
 }
 
+.firstBackground>.servicesGrid>.serviceCard:nth-child(1), .firstBackground>.servicesGrid>.serviceCard:nth-child(3){
+  margin-bottom: 6rem; /* การ์ดที่เป็นเลขคี่เลื่อนลง */
+}
+
+.firstBackground>.servicesGrid>.serviceCard:nth-child(2) {
+  margin-top: 6rem; /* การ์ดที่เป็นเลขคู่เลื่อนขึ้น */
+}
+
+
 .glowDot {
   width: 10px;
   height: 10px;
@@ -224,27 +233,30 @@
   opacity: 0.8;
 }
 
-.navigation {
+/* .navigation {
   display: flex;
   justify-content: space-between;
   padding: 2rem;
   width: 100%;
   position: relative;
   z-index: 2;
+} */
+
+/* .navLink {
+  color: #fff;
+  text-align: center;
+  font-family: Orbitron;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: inline-block;
 }
 
-.navLink {
-  color: #FFFFFF;
-  text-decoration: none;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.5rem;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
 
 .navLink:hover {
-  opacity: 1;
-}
+  color: #72D4ED;
+} */
 
 @media (max-width: 1200px) {
   .servicesGrid {

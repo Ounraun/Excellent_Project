@@ -3,7 +3,7 @@
 // import viteLogo from '/vite.svg'
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import CentralizeManagement from "./pages/Services/CentralizeManagement";
@@ -68,7 +68,10 @@ function App() {
           <Route path="/community/society" element={<Society />} />
           <Route path="/community/knowledge" element={<Knowledge />} />
           <Route path="/blog/doc/:documentId" element={<BlogDetail />} />
-          <Route path="/community/knowledge/doc/:documentId" element={<KnowledgeDetail />} />
+          <Route
+            path="/community/knowledge/doc/:documentId"
+            element={<KnowledgeDetail />}
+          />
           {/* <Route path="/test" element={<Test />} /> */}
         </Routes>
       </main>

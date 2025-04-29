@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
 
   ],
+  css: {
+    modules: {
+      localsConvention: 'camelCase', // ใช้ camelCase สำหรับชื่อคลาส
+    },
+  },
 })

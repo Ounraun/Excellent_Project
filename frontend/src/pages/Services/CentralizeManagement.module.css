@@ -184,16 +184,16 @@
   white-space: pre-wrap;
 }
 
-.navigation {
+/* .navigation {
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
   width: 100%;
   position: relative;
   margin-top: -72px;
-}
+} */
 
-.navLink {
+/* .navLink {
   color: #fff;
   text-align: center;
   font-family: Orbitron;
@@ -205,11 +205,9 @@
 }
 
 
-
 .navLink:hover {
-  opacity: 1;
-}
-
+  color: #72D4ED;
+} */
 @media (max-width: 1200px) {
   .featuresGrid {
     flex-wrap: wrap;

@@ -1,66 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Multimedia.module.css";
 
-interface ServiceItem {
-  title: string;
-  items: string[];
+interface MultimediaService {
+  id: number;
+  documentId: string;
+  subTitle: string | null; // คำบรรยายย่อย (อาจเป็น null)
+  content: ServiceContent[]; // อาร์เรย์ของ ServiceContent
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+interface ServiceContent {
+  id: number;
+  title: string; // ชื่อของบริการ
+  subTitle: string | null; // คำบรรยายย่อย (อาจเป็น null)
+  content: string; // เนื้อหา
 }
 
 const Multimedia: React.FC = () => {
-  const firstServices = [
-    {
-      title: "Control Room",
-      items: [
-        "Security Operation Center (SOC)",
-        "Network Operation Center (NOC)",
-        "Data Center",
-        "Building & Enterprise",
-      ],
-    },
-    {
-      title: "Security Operation",
-      items: ["Transportation Management", "Hospital", "Command Building"],
-    },
-    {
-      title: "Digital Signage",
-      items: ["Exhibition", "Department Store", "Outdoor Advertising"],
-    },
-  ];
+  const [MultimediaService, setContent] = useState<MultimediaService | null>(
+    null
+  );
+  // const [secondServices, setSecondServices] = useState<ServiceItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const secondServices = [
-    {
-      title: "Conference System",
-      items: [
-        "Add new content",
-        "Add new content",
-        "Add new content",
-        "Add new content",
-      ],
-    },
-    {
-      title: "Interior & Design",
-      items: [
-        "Add new content",
-        "Add new content",
-        "Add new content",
-        "Add new content",
-      ],
-    },
-    {
-      title: "Multimedia System",
-      items: ["Add new content", "Add new content", "Add new content"],
-    },
-    {
-      title: "Meeting Room Solution",
-      items: [
-        "Add new content",
-        "Add new content",
-        "Add new content",
-        "Add new content",
-      ],
-    },
-  ].slice(0, 4); // Ensure only 4 items for 2x2 grid
+  const apiUrl = import.meta.env.VITE_API_URL;
 
+  useEffect(() => {
+    fetch(`${apiUrl}/api/multimedie-solution?populate=*`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // สมมติว่า API ส่งข้อมูลในรูปแบบ { data: { firstServices: [...], secondServices: [...] } }
+        setContent(data.data);
+        // setSecondServices(data.data.secondServices);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching multimedia services:", error);
+        setError("เกิดข้อผิดพลาดในการโหลดข้อมูล");
+        setLoading(false);
+      });
+  }, [apiUrl]);
+
+  if (loading) {
+    return <div className={styles.container}>กำลังโหลดข้อมูล...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.container}>{error}</div>;
+  }
+
+  console.log(MultimediaService);
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -68,23 +65,23 @@ const Multimedia: React.FC = () => {
           <span className={styles.gradientText}>MULTIMEDIA</span>
           <span className={styles.solution}>SOLUTION</span>
         </h1>
-        <p className={styles.subtitle}>
-          ADD NEW CONTENT NEW CONTENT NEW CONTE NTNEW CONTENT NEW CONTENT NEW
-          CONTENT NEW CONTENT NEW CONTENT
-        </p>
+        <p className={styles.subtitle}>{MultimediaService?.subTitle}</p>
       </header>
 
       <div className={styles.backgroundsContainer}>
         <div className={styles.firstBackground}>
           <div className={styles.servicesGrid}>
-            {firstServices.map((service, index) => (
-              <div key={index} className={styles.serviceCard}>
-                <div className={styles.glowDot}></div>
+            {MultimediaService?.content.slice(0, 3).map((service) => (
+              <div key={service.id} className={styles.serviceCard}>
+                {/* <div className={styles.glowDot}></div> */}
                 <h3>{service.title}</h3>
                 <ul>
-                  {service.items.map((item, itemIndex) => (
-                    <li key={itemIndex}>{item}</li>
-                  ))}
+                  {service.content
+                    .split("\n")
+                    .filter((item) => item.trim().startsWith("-"))
+                    .map((filteredItem, index) => (
+                      <li key={index}>{filteredItem}</li>
+                    ))}
                 </ul>
               </div>
             ))}
@@ -93,14 +90,17 @@ const Multimedia: React.FC = () => {
 
         <div className={styles.secondBackground}>
           <div className={styles.servicesGrid}>
-            {secondServices.map((service, index) => (
-              <div key={index} className={styles.serviceCard}>
-                <div className={styles.glowDot}></div>
+            {MultimediaService?.content.slice(3, 7).map((service) => (
+              <div key={service.id} className={styles.serviceCard}>
+                {/* <div className={styles.glowDot}></div> */}
                 <h3>{service.title}</h3>
                 <ul>
-                  {service.items.map((item, itemIndex) => (
-                    <li key={itemIndex}>{item}</li>
-                  ))}
+                  {service.content
+                    .split("\n")
+                    .filter((item) => item.trim().startsWith("-"))
+                    .map((filteredItem, index) => (
+                      <li key={index}>{filteredItem}</li>
+                    ))}
                 </ul>
               </div>
             ))}
@@ -108,11 +108,11 @@ const Multimedia: React.FC = () => {
         </div>
       </div>
 
-      <nav className={styles.navigation}>
-        <a href="/services/centralize-management" className={styles.navLink}>
+      <nav className="navigation">
+        <a href="/services/centralize-management" className="navLink">
           {"< CENTRALIZE MANAGEMENT"}
         </a>
-        <a href="/services/data-management" className={styles.navLink}>
+        <a href="/services/data-management" className="navLink">
           {"Data management >"}
         </a>
       </nav>

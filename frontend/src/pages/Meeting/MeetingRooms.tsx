@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./MeetingRooms.css";
 
@@ -8,7 +8,9 @@ interface MeetingRoom {
   min: number;
   description: string;
   name: string;
-  picture: any;
+  picture: {
+    url: string;
+  };
   documentId: string;
   id: number;
   attributes: {

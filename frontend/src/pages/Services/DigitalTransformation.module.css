@@ -30,7 +30,16 @@
 .digital {
   text-align: center;
   letter-spacing: 1px;
-  background: linear-gradient(81deg, #34a8d5 19.23%, #a1e8ee 100%);
+  background: var(
+    --main-solution,
+    linear-gradient(
+      81deg,
+      #34a8d5 19.23%,
+      #a1e8ee 34.62%,
+      #c98d8c 54.33%,
+      #bd6c0f 95.64%
+    )
+  );
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
@@ -44,11 +53,13 @@
 
 .transformation {
   color: #fff;
+  text-align: center;
+  letter-spacing: 1px;
   font-family: Orbitron;
   font-size: 64px;
+  font-style: normal;
   font-weight: 400;
   line-height: 60.587px;
-  letter-spacing: 1px;
   display: inline-block;
 }
 
@@ -75,6 +86,22 @@
   position: relative;
   overflow: hidden;
   border-radius: 10px;
+
+  /* ==== ใส่ mask-image ที่ container ให้ fade รอบ ๆ ==== */
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 1) 75%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 1) 75%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .mainImage {
@@ -82,18 +109,21 @@
   height: 400px;
   object-fit: cover;
   object-position: center;
-  border-radius: 10px;
+  /* เอา mask-image และ border-radius ออก */
+  /* filter ยังกำหนดได้ตามเดิม */
   filter: brightness(1.2) contrast(1.1);
 }
 
 .description {
-  width: 45%;
-  text-align: left;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  padding: 1rem;
+  color: #f5f5f5;
+  text-align: center;
+  width: 549px;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  display: inline-block;
 }
 
 .description p {
@@ -116,6 +146,7 @@
 
 .transformationItem {
   display: flex;
+  /* ให้ flex items ยืดเต็มความสูงของ container */
   align-items: center;
   gap: 1rem;
   padding: 0.75rem;
@@ -123,6 +154,8 @@
   border: 1px solid rgba(16, 151, 249, 0.3);
   border-radius: 4px;
   transition: all 0.3s ease;
+  /* บอกให้ box-sizing ครอบ padding ด้วยเวลา stretch */
+  box-sizing: border-box;
 }
 
 .transformationItem:hover {
@@ -131,30 +164,35 @@
   box-shadow: 0 0 10px rgba(16, 151, 249, 0.2);
 }
 
+
 .itemBar {
   width: 3px;
-  height: 24px;
+  /* ให้ยืดเต็มความสูงของ container (รวม padding ด้วยเพราะ box-sizing:border-box) */
+  height: 100%;
   background: linear-gradient(180deg, #34a8d5 0%, #a1e8ee 100%);
   border-radius: 1px;
+  /* ป้องกันไม่ให้ถูกลดทอนด้วย align-items */
+  align-self: stretch;
 }
 
+/* ไม่จำเป็นต้องเปลี่ยน */
 .transformationItem p {
-  color: rgba(255, 255, 255, 0.9);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 0;
+  color: #d9d9d9;
+  font-family: Poppins, sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  display: block;  /* ให้ block จะได้ไม่ติดขอบบน */
+  margin: 0;       /* เคลียร์ margin เดิม */
 }
-
-.navigation {
+/* .navigation {
   display: flex;
   justify-content: space-between;
   padding: 2rem 0;
   margin-top: auto;
   width: 100%;
-}
+} */
 
-.navLink {
+/* .navLink {
   color: #fff;
   text-align: center;
   font-family: Orbitron;
@@ -162,14 +200,13 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  text-transform: lowercase;
+  display: inline-block;
 }
 
+
 .navLink:hover {
-  color: #34A8D5;
-}
+  color: #72D4ED;
+} */
 
 @media (max-width: 1200px) {
   .leftSection {

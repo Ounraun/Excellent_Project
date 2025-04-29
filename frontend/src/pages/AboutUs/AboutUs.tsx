@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ParticlesComponent from "../../components/Particles/Particles";
 import styles from "../../components/Particles/Particle.module.css";
-import "./AboutUs.Module.css";
+import aboutStyles from "./AboutUs.module.css";
 
 import CommunityCard from "./CommunityCard";
 import Contact from "../../components/Contact";
@@ -27,23 +27,47 @@ const AboutUs = () => {
     phone: string; // Add the phone property
     // Add other properties as needed
   }
-
+  interface AboutUs {
+    address: string;
+    name: string; // Add the name property
+    phone: string; // Add the phone property
+    // Add other properties as needed
+  }
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
+  const [aboutUs, setAboutUs] = useState<AboutUs | null>(null);
+  const [locale, setLocale] = useState("en"); // ค่าเริ่มต้นเป็นภาษาอังกฤษ
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const location = useLocation();
 
-  // useEffect ควรใส่ตรงนี้ หลังการประกาศ state variables และ apiUrl
+  const fetchCompanyInfo = async () => {
+    try {
+      const response = await fetch(
+        `${apiUrl}/api/company-information?locale=${locale}`
+      );
+      const data = await response.json();
+      console.log("Company Info:", data.data);
+      setCompanyInfo(data.data);
+    } catch (error) {
+      console.error("Error fetching Company Info:", error);
+    }
+  };
+
+  const fetchAboutUsApi = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/api/about-us?locale=${locale}`);
+      const data = await response.json();
+      console.log("About us:", data);
+      setAboutUs(data.data);
+    } catch (error) {
+      console.error("Error fetching about us:", error);
+    }
+  };
+
   useEffect(() => {
-    // ตัวอย่าง: ดึงข้อมูล Single Type "Company Info"
-    fetch(`${apiUrl}/api/company-information`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Company Info:", data.data);
-        setCompanyInfo(data.data);
-      })
-      .catch((error) => console.error("Error fetching Company Info:", error));
-  }, [apiUrl]);
+    fetchCompanyInfo();
+    fetchAboutUsApi();
+  }, [apiUrl, locale]);
 
   useEffect(() => {
     if (location.state?.scrollToCommunity) {
@@ -60,6 +84,8 @@ const AboutUs = () => {
     console.log("Company Info:", companyInfo.address);
   }
 
+  console.log("About Us:", aboutUs);
+
   return (
     <div>
       {/* hero  */}
@@ -75,10 +101,10 @@ const AboutUs = () => {
       >
         <div className={styles.particleWrapper}>
           {particles}
-          <div className="content-layout">
-            <div className="p-4">
+          <div className={aboutStyles.contentLayout}>
+            <div className="p-3">
               <h1
-                className="main-title"
+                className={aboutStyles.mainTitle}
                 style={{
                   paddingTop: "0px",
                 }}
@@ -86,7 +112,7 @@ const AboutUs = () => {
                 The Excellent
               </h1>
               <p
-                className="main-text-s32 "
+                className={`${aboutStyles.mainText} ${aboutStyles.mainTextS32}`}
                 style={{
                   fontWeight: "400",
                   lineHeight: "170%",
@@ -113,10 +139,9 @@ const AboutUs = () => {
         {" "}
         {/* Background */}
         <img
-          src="src/assets/AboutUs/bg-solutions.svg"
+          src="src/assets/AboutUs/bg_service.jpg"
           alt="Background"
-          className="w-100 h-100 object-fit-cover"
-          style={{ objectPosition: "center" }}
+          className={`${aboutStyles.bgFade}`}
         />
         {/* Background */}
         <div
@@ -131,8 +156,6 @@ const AboutUs = () => {
             className="text-white text-center fw-bold display-4 display-md-3 display-lg-1"
             style={{
               fontFamily: "Saira, sans-serif",
-              // fontWeight: 700,
-              // fontSize: "64px",
               lineHeight: "142%",
             }}
           >
@@ -143,14 +166,12 @@ const AboutUs = () => {
         </div>
         {/* Gems 1 */}
         <div
-          className={`position-absolute gem-float-1 ${
-            isHoveredGem1 ? "hovered" : ""
-          }`}
+          className={[
+            "position-absolute",
+            aboutStyles["gem-float-1"], // <-- grab the module class
+            isHoveredGem1 ? aboutStyles.hovered : "",
+          ].join(" ")}
           style={{
-            top: "8% ",
-            left: "25%",
-            width: "300px",
-            height: "300px",
             zIndex: 5,
           }}
           onMouseEnter={() => {
@@ -165,18 +186,16 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
-          <p className="textInGem">Network solution</p>
+          <p className={`${aboutStyles.textInGem}`}>Network solution</p>
         </div>
         {/* Gems 2 */}
         <div
-          className={`position-absolute gem-float-2 ${
-            isHoveredGem2 ? "hovered" : ""
-          }`}
+          className={[
+            "position-absolute",
+            aboutStyles["gem-float-2"], // <-- grab the module class
+            isHoveredGem2 ? aboutStyles.hovered : "",
+          ].join(" ")}
           style={{
-            top: "16% ",
-            left: "10%",
-            width: "300px",
-            height: "300px",
             zIndex: 5,
           }}
           onMouseEnter={() => {
@@ -191,19 +210,17 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
-          <p className="textInGem">Data center</p>
+          <p className={`${aboutStyles.textInGem}`}>Data center</p>
         </div>
         {/* Gems 3 */}
         <div
-          className={`position-absolute gem-float-3 ${
-            isHoveredGem3 ? "hovered" : ""
-          }`}
+          className={[
+            "position-absolute",
+            aboutStyles["gem-float-3"], // <-- grab the module class
+            isHoveredGem3 ? aboutStyles.hovered : "",
+          ].join(" ")}
           style={{
-            top: "27% ",
-            left: "17%",
             zIndex: 5,
-            width: "380px",
-            height: "380px",
           }}
           onMouseEnter={() => {
             setIsHoveredGem3(true);
@@ -217,18 +234,16 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
-          <p className="textInGem">Data management</p>
+          <p className={`${aboutStyles.textInGem}`}>Data management</p>
         </div>
         {/* Gems 4 */}
         <div
-          className={`position-absolute gem-float-4 ${
-            isHoveredGem4 ? "hovered" : ""
-          }`}
+          className={[
+            "position-absolute",
+            aboutStyles["gem-float-4"], // <-- grab the module class
+            isHoveredGem4 ? aboutStyles.hovered : "",
+          ].join(" ")}
           style={{
-            top: "8% ",
-            right: "27%",
-            width: "300px",
-            height: "280px",
             zIndex: 5,
           }}
           onMouseEnter={() => {
@@ -243,18 +258,16 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
-          <p className="textInGem">Centralize management</p>
+          <p className={`${aboutStyles.textInGem}`}>Centralize management</p>
         </div>
         {/* Gems 5 */}
         <div
-          className={`position-absolute gem-float-5 ${
-            isHoveredGem5 ? "hovered" : ""
-          }`}
+          className={[
+            "position-absolute",
+            aboutStyles["gem-float-5"], // <-- grab the module class
+            isHoveredGem5 ? aboutStyles.hovered : "",
+          ].join(" ")}
           style={{
-            top: "16% ",
-            right: "13%",
-            width: "300px",
-            height: "300px",
             zIndex: 5,
           }}
           onMouseEnter={() => {
@@ -269,19 +282,17 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
-          <p className="textInGem">Multimedia solution</p>
+          <p className={`${aboutStyles.textInGem}`}>Multimedia solution</p>
         </div>
         {/* Gems 6 */}
         <div
-          className={`position-absolute gem-float-6 ${
-            isHoveredGem6 ? "hovered" : ""
-          }`}
+          className={[
+            "position-absolute",
+            aboutStyles["gem-float-6"], // <-- grab the module class
+            isHoveredGem6 ? aboutStyles.hovered : "",
+          ].join(" ")}
           style={{
-            top: "28% ",
-            right: "18%",
             zIndex: 5,
-            width: "330px",
-            height: "330px",
           }}
           onMouseEnter={() => {
             setIsHoveredGem6(true);
@@ -295,7 +306,7 @@ const AboutUs = () => {
             alt=""
             style={{ width: "100%", height: "100%" }}
           />
-          <p className="textInGem">Digital transformation</p>
+          <p className={`${aboutStyles.textInGem}`}>Digital transformation</p>
         </div>
         {/* Gems floor */}
         <div
@@ -312,20 +323,22 @@ const AboutUs = () => {
             style={{ width: "100%", height: "100%" }}
           />
         </div>
-        <div className="vl"></div>
-        <div className="iso-layout">
-          <div className="iso-item">
-            <div className="iso-item-content text-white">
+        <div className={`${aboutStyles.vl}`}></div>
+        <div className={aboutStyles["iso-layout"]}>
+          <div className={aboutStyles["iso-item"]}>
+            <div className={`${aboutStyles["iso-item-content"]} text-white`}>
               <p>Empower your business with IT solutions by</p>
               <p>
-                <span className="color-gradient-1">
+                <span className={aboutStyles["color-gradient-1"]}>
                   Experts understand your every need.
                 </span>{" "}
               </p>
               <p>
                 <span>
                   Guarantees with The{" "}
-                  <span className="color-gradient-2">ISO 9001:2015</span>{" "}
+                  <span className={aboutStyles["color-gradient-2"]}>
+                    ISO 9001:2015
+                  </span>{" "}
                 </span>
               </p>
             </div>
@@ -334,20 +347,24 @@ const AboutUs = () => {
       </div>
 
       {/* community */}
-      <div className="position-relative community-layout bg-community">
-        <div className="filter-bg-community-1"></div>
-        <div className="filter-bg-community-2"></div>
-        <div className="circle-bg-community-1"></div>
-        <div className="circle-bg-community-2"></div>
+      <div
+        className={`position-relative ${aboutStyles["community-layout"]} ${aboutStyles["bg-community"]}`}
+      >
+        <div className={aboutStyles["filter-bg-community-1"]}></div>
+        <div className={aboutStyles["filter-bg-community-2"]}></div>
+        <div className={aboutStyles["circle-bg-community-1"]}></div>
+        <div className={aboutStyles["circle-bg-community-2"]}></div>
         <div className="position-absolute w-100 h-100">
-          <div className="position-relative wave-bg-community w-100 h-100">
+          <div
+            className={`${aboutStyles["wave-bg-community"]} position-relative  w-100 h-100`}
+          >
             <img
-              className="position-absolute bg-wave-filter "
+              className={`${aboutStyles["bg-wave-filter"]} position-absolute`}
               src="../../src/assets/AboutUs/bg-wave-service.svg"
               alt=""
             />
             <img
-              className="position-absolute bg-wave"
+              className={`${aboutStyles["bg-wave"]} position-absolute`}
               src="../../src/assets/AboutUs/bg-wave.svg"
               alt=""
             />
@@ -364,8 +381,10 @@ const AboutUs = () => {
             textAlign: "center",
           }}
         >
-          <h1 className="main-text-s50">“ Tailored IT solutions </h1>
-          <h1 className="main-text-s50">
+          <h1 className={aboutStyles["main-text-s50"]}>
+            “ Tailored IT solutions{" "}
+          </h1>
+          <h1 className={aboutStyles["main-text-s50"]}>
             we're ready to consult and serve you. ”
           </h1>
         </div>
@@ -378,10 +397,10 @@ const AboutUs = () => {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <h1 className="main-text-s64">Our Community</h1>
+          <h1 className={aboutStyles["main-text-s64"]}>Our Community</h1>
         </div>
         <CommunityCard />
-        <div className="position-absolute backgroundSVG">
+        <div className={`${aboutStyles["backgroundSVG"]} position-absolute`}>
           <svg
             viewBox="0 0 1440 2090"
             fill="none"
