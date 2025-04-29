@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { PersonCircle } from "react-bootstrap-icons";
 import "./Navbar.css";
+import { useTranslation } from "react-i18next";
 
 const Navigationbar = () => {
   const [expanded, setExpanded] = useState(false);
   const [showServicesDropdown, setShowServicesDropdown] = useState(false);
   const [showCommunityDropdown, setShowCommunityDropdown] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
-  const handleCommunityClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollToCommunity: true } });
-    } else {
-      const communitySection = document.querySelector(".community-layout");
-      if (communitySection) {
-        communitySection.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+  const { t, i18n } = useTranslation();
+
+  const switchLang = (lng: "en" | "th") => {
+    i18n.changeLanguage(lng);
   };
 
   const navLinkStyle = {
@@ -335,6 +329,13 @@ const Navigationbar = () => {
                 Meeting Rooms
               </NavDropdown.Item>
             </NavDropdown>
+            <select
+              value={i18n.language}
+              onChange={(e) => switchLang(e.target.value as "en" | "th")}
+            >
+              <option value="en">{t("language.en")}</option>
+              <option value="th">{t("language.th")}</option>
+            </select>
           </Nav>
         </Navbar.Collapse>
       </Container>

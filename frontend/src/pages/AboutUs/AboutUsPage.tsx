@@ -35,16 +35,13 @@ const AboutUs = () => {
   }
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
   const [aboutUs, setAboutUs] = useState<AboutUs | null>(null);
-  const [locale, setLocale] = useState("en"); // ค่าเริ่มต้นเป็นภาษาอังกฤษ
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const location = useLocation();
 
   const fetchCompanyInfo = async () => {
     try {
-      const response = await fetch(
-        `${apiUrl}/api/company-information?locale=${locale}`
-      );
+      const response = await fetch(`${apiUrl}/api/company-information`);
       const data = await response.json();
       console.log("Company Info:", data.data);
       setCompanyInfo(data.data);
@@ -55,7 +52,7 @@ const AboutUs = () => {
 
   const fetchAboutUsApi = async () => {
     try {
-      const response = await fetch(`${apiUrl}/api/about-us?locale=${locale}`);
+      const response = await fetch(`${apiUrl}/api/about-us`);
       const data = await response.json();
       console.log("About us:", data);
       setAboutUs(data.data);
@@ -67,7 +64,7 @@ const AboutUs = () => {
   useEffect(() => {
     fetchCompanyInfo();
     fetchAboutUsApi();
-  }, [apiUrl, locale]);
+  }, [apiUrl]);
 
   useEffect(() => {
     if (location.state?.scrollToCommunity) {

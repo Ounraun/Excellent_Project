@@ -5,13 +5,13 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import AboutUs from "./pages/AboutUs/AboutUs";
-import CentralizeManagement from "./pages/Services/CentralizeManagement";
-import Multimedia from "./pages/Services/Multimedia";
-import DataManagement from "./pages/Services/DataManagement";
-import DigitalTransformation from "./pages/Services/DigitalTransformation";
-import DataCenter from "./pages/Services/DataCenter";
-import Contact from "./pages/Contact";
+import AboutUs from "./pages/AboutUs/AboutUsPage";
+import CentralizeManagement from "./pages/ServicesAndSolutions/CentralizeManagement";
+import Multimedia from "./pages/ServicesAndSolutions/Multimedia";
+import DataManagement from "./pages/ServicesAndSolutions/DataManagement";
+import DigitalTransformation from "./pages/ServicesAndSolutions/DigitalTransformation";
+import DataCenter from "./pages/ServicesAndSolutions/DataCenter";
+// import Contact from "./pages/Contact";
 import NAS from "./pages/NAS";
 import MeetingRooms from "./pages/Meeting/MeetingRooms";
 import Rebooking from "./pages/Meeting/Rebooking";
@@ -20,7 +20,7 @@ import CompanyEvents from "./pages/Community/CompanyEvents";
 import Society from "./pages/Community/Society";
 import Knowledge from "./pages/Community/Knowledge";
 import MeetingRoomsBooking from "./pages/Meeting/MeetingRoomsBooking";
-import NetworkSolution from "./pages/Services/NetworkSolution";
+import NetworkSolution from "./pages/ServicesAndSolutions/NetworkSolution";
 import BlogDetail from "./pages/Community/BlogDetail";
 import KnowledgeDetail from "./pages/Community/KnowledgeDetail";
 // import Test from "./pages/Services/Test";
@@ -55,7 +55,7 @@ function App() {
             path="/services/network-solution"
             element={<NetworkSolution />}
           />
-          <Route path="/contact" element={<Contact />} />
+          {/* <Route path="/contact" element={<Contact />} /> */}
           <Route path="/nas" element={<NAS />} />
           <Route path="/meeting-rooms" element={<MeetingRooms />} />
           <Route
