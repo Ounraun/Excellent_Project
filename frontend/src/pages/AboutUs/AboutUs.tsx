@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ParticlesComponent from "../../components/Particles/Particles";
-import styles from "../../components/Particles/Particle.module.css";
+// import styles from "../../components/Particles/Particle.module.css";
 import aboutStyles from "./AboutUs.module.css";
 
 import CommunityCard from "./CommunityCard";
@@ -17,7 +17,7 @@ const AboutUs = () => {
   const [isHoveredGem6, setIsHoveredGem6] = useState(false);
 
   const particles = useMemo(() => {
-    return <ParticlesComponent className={styles.particle} />;
+    return <ParticlesComponent />;
   }, []);
 
   // state สำหรับข้อมูลที่ต้องการดึงจาก API เช่น Single Type หรือ Blog Posts
@@ -99,7 +99,7 @@ const AboutUs = () => {
           width: "100%",
         }}
       >
-        <div className={styles.particleWrapper}>
+        <div className={aboutStyles.particleWrapper}>
           {particles}
           <div className={aboutStyles.contentLayout}>
             <div className="p-3">

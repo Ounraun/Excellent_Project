@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../pages/Services/NetworkSolution.module.css";
+import styles from "./Card.module.css";
 import type { NetworkContent } from "../../pages/Services/NetworkSolution";
 
 interface Props {
