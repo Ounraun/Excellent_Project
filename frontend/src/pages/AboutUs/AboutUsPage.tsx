@@ -292,12 +292,15 @@ const AboutUs = () => {
                 </span>{" "}
               </p>
               <p>
-                <span>
-                  {t("aboutUs:isoLineThree")}{" "}
-                  <span className={aboutStyles["color-gradient-2"]}>
-                    {aboutUs?.ISONumber}
-                  </span>{" "}
-                </span>
+                {t("aboutUs:isoLineThree")}{" "}
+                <a
+                  href="https://online.fliphtml5.com/gardk/ptra/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={aboutStyles["color-gradient-2"]}
+                >
+                  {aboutUs?.ISONumber}
+                </a>
               </p>
             </div>
           </div>
