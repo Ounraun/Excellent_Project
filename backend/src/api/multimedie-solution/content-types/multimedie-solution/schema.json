@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "multimedie_solutions",
+  "info": {
+    "singularName": "multimedie-solution",
+    "pluralName": "multimedie-solutions",
+    "displayName": "Multimedia solution",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "subTitle": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "content": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.content-card",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

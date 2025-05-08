@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_content_content_cards",
+  "info": {
+    "displayName": "Content Card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "subTitle": {
+      "type": "text"
+    },
+    "content": {
+      "type": "text"
+    }
+  }
+}
