@@ -41,3 +41,10 @@
   line-height: 170%;
   margin-bottom: 0.75rem;
 }
+
+.groupedCard {
+  border: none; /* ลบ border */
+  background: transparent; /* ทำให้พื้นหลังโปร่งใส (ถ้าจำเป็น) */
+  padding: 2.5rem; /* คง padding ไว้เหมือนเดิม */
+  color: #fff; /* คงสีข้อความ */
+}

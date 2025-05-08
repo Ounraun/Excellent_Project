@@ -1,65 +1,66 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styles from "./CentralizeManagement.module.css";
 
+import { getCentralizeManagement } from "../../services/strapi";
+import type { Feature } from "../../types/centralizeManagement";
+
 const CentralizeManagement = () => {
-  interface Feature {
-    id: number;
-    documentId: string;
-    mainSubTitle: string; // mainSubTitle เป็นสตริง
-    content: ContentItem[]; // content เป็นอาร์เรย์ของ ContentItem
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-  }
-
-  interface ContentItem {
-    id: number;
-    title: string;
-    subtitle: string | null; // subtitle อาจเป็น null ได้
-    content: string;
-  }
-
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
   const [feature, setFeature] = useState<Feature | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const { t, i18n } = useTranslation(["common", "centralize"]);
 
   useEffect(() => {
-    // ดึงข้อมูลจาก API
-    fetch(`${apiUrl}/api/centralize-management?populate=*`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setFeature(data.data); // สมมติว่า Strapi ส่งข้อมูลในรูปแบบ { data: [...] }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching features:", error);
-        setError("เกิดข้อผิดพลาดในการโหลดข้อมูล");
-        setLoading(false);
-      });
-  }, [apiUrl]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  if (loading) {
-    return <div className={styles.container}>กำลังโหลดข้อมูล...</div>;
-  }
+  // 1️⃣ ดึงข้อมูล About Us ตอนหน้า mount และทุกครั้งที่เปลี่ยนภาษา
+  useEffect(() => {
+    getCentralizeManagement()
+      .then((res) => setFeature(res.data))
+      .catch((err) =>
+        console.error("Failed fetching Centralize Managment:", err)
+      );
+  }, [i18n.language]);
 
-  if (error) {
-    return <div className={styles.container}>{error}</div>;
-  }
+  // useEffect(() => {
+  //   // ดึงข้อมูลจาก API
+  //   fetch(`${apiUrl}/api/centralize-management?populate=*`)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch data");
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setFeature(data.data); // สมมติว่า Strapi ส่งข้อมูลในรูปแบบ { data: [...] }
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching features:", error);
+  //       setError("เกิดข้อผิดพลาดในการโหลดข้อมูล");
+  //       setLoading(false);
+  //     });
+  // }, [apiUrl]);
+
+  // if (loading) {
+  //   return <div className={styles.container}>กำลังโหลดข้อมูล...</div>;
+  // }
+
+  // if (error) {
+  //   return <div className={styles.container}>{error}</div>;
+  // }
   console.log(feature);
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>
-          <span className={styles.highlight}>CENTRALIZE</span>{" "}
-          <span className={styles.Management_29_186}>MANAGEMENT</span>
+          <span className={styles.highlight}>{t("centralize:centralize")}</span>{" "}
+          <span className={styles.Management_29_186}>
+            {t("centralize:management")}
+          </span>
         </h1>
         <p className={styles.subtitle}>
           {feature?.mainSubTitle || "Loading..."}

@@ -109,10 +109,7 @@ const CompanyEvents = () => {
     <>
       <div className="community-container">
         <div className="community-header">
-          <h1>
-            <span className="text-primary">COMPANY</span>
-            <span className="text-orange"> EVENTS</span>
-          </h1>
+          <h1>COMPANY EVENTS</h1>
         </div>
 
         <div className="events-grid">
@@ -150,7 +147,11 @@ const CompanyEvents = () => {
           )}
         </div>
 
-        <button className="more-btn">More from our page</button>
+        <div className="w100 text-center">
+          <button className="more-btn ">
+            <span>More from our page</span>
+          </button>
+        </div>
       </div>
       <Contact />
     </>

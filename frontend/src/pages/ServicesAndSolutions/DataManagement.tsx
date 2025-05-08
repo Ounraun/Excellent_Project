@@ -1,68 +1,33 @@
 import React, { useState, useEffect } from "react";
 import styles from "./DataManagement.module.css";
 import descriptionIcon from "../../assets/DataManagement/87.png";
+import { useTranslation } from "react-i18next";
 
-interface Service {
-  id: number;
-  documentId: string;
-  subTitle: string | null; // คำบรรยายย่อย (อาจเป็น null)
-  content: ServiceContent[]; // อาร์เรย์ของ ServiceContent
-  serviceContent1: string;
-  serviceContent2: string;
-  subTitle1: string;
-  subTitle2: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
-
-interface ServiceContent {
-  id: number;
-  title: string;
-  subTitle: string | null; // คำบรรยายย่อย (อาจเป็น null)
-  content: string | null; // เนื้อหา (อาจเป็น null)
-}
+import { getDataManagement } from "../../services/strapi";
+import type { Service } from "../../types/dataManagement";
 
 const DataManagement: React.FC = () => {
   const [services, setServices] = useState<Service | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const { t, i18n } = useTranslation(["common", "dataManagement"]);
 
   useEffect(() => {
-    fetch(`${apiUrl}/api/data-management?populate=*`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setServices(data.data); // สมมติว่า API ส่งข้อมูลในรูปแบบ { data: [...] }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching services:", error);
-        setError("เกิดข้อผิดพลาดในการโหลดข้อมูล");
-        setLoading(false);
-      });
-  }, [apiUrl]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  if (loading) {
-    return <div className={styles.container}>กำลังโหลดข้อมูล...</div>;
-  }
+  useEffect(() => {
+    getDataManagement()
+      .then((res) => setServices(res.data))
+      .catch((err) => console.error("Failed fetching Data Managment:", err));
+  }, [i18n.language]);
 
-  if (error) {
-    return <div className={styles.container}>{error}</div>;
-  }
-  console.log(services);
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>
-          <span className={styles.data}>DATA</span>{" "}
-          <span className={styles.management}>MANAGEMENT</span>
+          <span className={styles.data}>{t("dataManagement:data")}</span>{" "}
+          <span className={styles.management}>
+            {t("dataManagement:management")}
+          </span>
         </h1>
       </div>
 
@@ -85,7 +50,9 @@ const DataManagement: React.FC = () => {
       </div>
 
       <div className={styles.servicesContainer}>
-        <h2 className={styles.servicesTitle}>OUR SERVICES</h2>
+        <h2 className={styles.servicesTitle}>
+          {t("dataManagement:ourService")}
+        </h2>
         <div className={styles.servicesList}>
           <div className={styles.leftContent}>
             {services?.serviceContent1}

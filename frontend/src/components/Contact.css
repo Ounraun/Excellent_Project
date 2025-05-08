@@ -1,5 +1,8 @@
 .contact-layout {
-  background-color: #1E1E1E;
+  box-sizing: border-box;
+  background: linear-gradient(101deg, #052638 25.22%, #000 100%);
+  border-top: 1px solid #d6baba80;
+  flex-shrink: 0;
   width: 100vw;
   padding: 3rem 0;
   position: relative;

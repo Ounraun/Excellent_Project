@@ -2,42 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Contact from "../../components/Contact";
 import "./Knowledge.css";
-
-interface Category {
-  createdAt: string;
-  description: string | null;
-  documentId: string;
-  id: number;
-  name: string;
-  publishedAt: string;
-  updatedAt: string;
-}
-
-interface BlogPost {
-  id: number;
-  content: string;
-  createdAt: string;
-  documentId: string;
-  gallery_image: null | any;
-  main_image: {
-    id: number;
-    documentId: string;
-    name: string;
-    alternativeText: string | null;
-    caption: string | null;
-    url: string;
-  } | null;
-  show_main: boolean;
-  title: string;
-  updatedAt: string;
-  publishedAt: string;
-  category: Category;
-}
+import bridgeVideo from "../../assets/Knowledge/bridge_Final.mp4";
+import { useTranslation } from "react-i18next";
+import type { BlogPost } from "../../types/blogPost";
+import { getBlogPosts } from "../../services/strapi";
 
 const Knowledge = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const apiUrl = import.meta.env.VITE_API_URL;
+  const { t, i18n } = useTranslation(["common", "knowledge"]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -105,29 +79,37 @@ const Knowledge = () => {
   return (
     <>
       <div className="knowledge-container">
-        <h1>KNOWLEDGE</h1>
+        <h1>{t("knowledge:knowledge")}</h1>
         {/* Header Section */}
         <div className="knowledge-top-section">
           <div className="knowledge-header">
             <p className="knowledge-subtitle">
-              Latest contents for What / Why / For
+              {t("knowledge:subTitle1")}
               <br />
-              make we have the experts,
+              {t("knowledge:subTitle2")}
               <br />
-              the company showing any part of work
+              {t("knowledge:subTitle3")}
             </p>
             <button className="more-knowledge-btn">
-              More knowledge
-              <span className="btn-subtitle">click to read all knowledge</span>
+              <a
+                href="https://www.facebook.com/TecAsiaSupport"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                {t("knowledge:moreKnowledge")}
+              </a>
             </button>
           </div>
           <div className="video-container">
-            <div className="video-placeholder">
-              <img src="/path-to-video-thumbnail.jpg" alt="Video thumbnail" />
-              <div className="play-button">
-                <i className="fas fa-play"></i>
-              </div>
-            </div>
+            <video
+              className="video-player"
+              controls
+              poster="/path-to-video-thumbnail.jpg"
+            >
+              <source src={bridgeVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
 
@@ -160,7 +142,7 @@ const Knowledge = () => {
                       to={`/community/knowledge/doc/${post.documentId}`}
                       className="read-more"
                     >
-                      Read more »
+                      {t("knowledge:readMore")}
                     </Link>
                   </div>
                 </div>

@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./Card.module.css";
-import type { NetworkContent } from "../../pages/ServicesAndSolutions/NetworkSolution";
+// import type { NetworkContent } from "../../pages/ServicesAndSolutions/NetworkSolution";
+import type { NetworkContent } from "../../types/networkSolution";
 
 interface Props {
   item: NetworkContent;
   isGrouped?: boolean;
 }
 
-const ContentCard: React.FC<Props> = ({ item, isGrouped }) => (
+const ContentCard: React.FC<Props> = ({ item, isGrouped = false }) => (
   <div
     className={isGrouped ? `${styles.card} ${styles.groupedCard}` : styles.card}
   >

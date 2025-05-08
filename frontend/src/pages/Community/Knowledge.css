@@ -6,11 +6,27 @@
 }
 
 .knowledge-container h1 {
-  font-family: 'Saira', sans-serif;
-  font-size: 3rem;
-  font-weight: bold;
-  color: #00A3FF;
-  margin: 0 0 2rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  background: var(
+    --main-solution,
+    linear-gradient(
+      81deg,
+      #34a8d5 19.23%,
+      #a1e8ee 34.62%,
+      #c98d8c 54.33%,
+      #bd6c0f 95.64%
+    )
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-family: Orbitron;
+  font-size: 69.751px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 101.523%;
+  display: inline-block;
 }
 
 .knowledge-top-section {
@@ -39,6 +55,7 @@
   color: #00A3FF;
   margin: 0 0 1rem 0;
 }
+
 
 .knowledge-subtitle {
   font-size: 1rem;
@@ -99,6 +116,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* ครอป/ขยายให้เต็ม container */
+  display: block;         /* ลบ inline-block whitespace */
 }
 
 .play-button {

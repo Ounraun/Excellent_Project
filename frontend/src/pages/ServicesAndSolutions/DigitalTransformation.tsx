@@ -1,65 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./DigitalTransformation.module.css";
+import { useTranslation } from "react-i18next";
 
-interface Transformation {
-  id: number;
-  documentId: string;
-  subTitle: string | null; // คำบรรยายย่อย (อาจเป็น null)
-  content: TransformationContent[]; // อาร์เรย์ของ TransformationContent
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
+import type { Transformation } from "../../types/digitalTransformation";
+import { getDataTransformation } from "../../services/strapi";
 
-interface TransformationContent {
-  id: number;
-  title: string; // ชื่อของ Transformation Item
-  subTitle: string | null; // คำบรรยายย่อย (อาจเป็น null)
-  content: string | null; // เนื้อหา (อาจเป็น null)
-}
 const DigitalTransformation: React.FC = () => {
   const [transformationItem, setTransformationItem] =
     useState<Transformation | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const { t, i18n } = useTranslation(["common", "digitalTransformation"]);
 
   useEffect(() => {
-    fetch(`${apiUrl}/api/digital-transformation?populate=*`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setTransformationItem(data.data); // สมมติว่า API ส่งข้อมูลในรูปแบบ { data: [...] }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching transformation items:", error);
-        setError("เกิดข้อผิดพลาดในการโหลดข้อมูล");
-        setLoading(false);
-      });
-  }, [apiUrl]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  if (loading) {
-    return <div className={styles.container}>กำลังโหลดข้อมูล...</div>;
-  }
-
-  if (error) {
-    return <div className={styles.container}>{error}</div>;
-  }
-  console.log(transformationItem);
+  useEffect(() => {
+    getDataTransformation()
+      .then((res) => setTransformationItem(res.data))
+      .catch((err) =>
+        console.error("Failed fetching Digital Transformation:", err)
+      );
+  }, [i18n.language]);
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>
-          <span className={styles.digital}>DIGITAL</span>{" "}
-          <span className={styles.transformation}>TRANSFORMATION</span>
+          <span className={styles.digital}>
+            {t("digitalTransformation:digital")}
+          </span>{" "}
+          <span className={styles.transformation}>
+            {t("digitalTransformation:transformation")}
+          </span>
         </h1>
       </div>
 

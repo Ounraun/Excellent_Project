@@ -1,12 +1,16 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import ParticlesComponent from "../../components/Particles/Particles";
-// import styles from "../../components/Particles/Particle.module.css";
-import aboutStyles from "./AboutUs.module.css";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
+import ParticlesComponent from "../../components/Particles/Particles";
 import CommunityCard from "./CommunityCard";
 import Contact from "../../components/Contact";
-// import Footer from "../../components/Footer";
+
+import aboutStyles from "./AboutUs.module.css";
+
+import { getAboutUs } from "../../services/strapi";
+import type { AboutUs } from "../../types/aboutUs";
 
 const AboutUs = () => {
   const [isHoveredGem1, setIsHoveredGem1] = useState(false);
@@ -20,71 +24,19 @@ const AboutUs = () => {
     return <ParticlesComponent />;
   }, []);
 
-  // state สำหรับข้อมูลที่ต้องการดึงจาก API เช่น Single Type หรือ Blog Posts
-  interface CompanyInfo {
-    address: string;
-    name: string; // Add the name property
-    phone: string; // Add the phone property
-    // Add other properties as needed
-  }
-  interface AboutUs {
-    address: string;
-    name: string; // Add the name property
-    phone: string; // Add the phone property
-    // Add other properties as needed
-  }
-  const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
+  const { t, i18n } = useTranslation(["common", "aboutUs"]);
   const [aboutUs, setAboutUs] = useState<AboutUs | null>(null);
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
 
-  const location = useLocation();
-
-  const fetchCompanyInfo = async () => {
-    try {
-      const response = await fetch(`${apiUrl}/api/company-information`);
-      const data = await response.json();
-      console.log("Company Info:", data.data);
-      setCompanyInfo(data.data);
-    } catch (error) {
-      console.error("Error fetching Company Info:", error);
-    }
-  };
-
-  const fetchAboutUsApi = async () => {
-    try {
-      const response = await fetch(`${apiUrl}/api/about-us`);
-      const data = await response.json();
-      console.log("About us:", data);
-      setAboutUs(data.data);
-    } catch (error) {
-      console.error("Error fetching about us:", error);
-    }
-  };
-
+  // 1️⃣ ดึงข้อมูล About Us ตอนหน้า mount และทุกครั้งที่เปลี่ยนภาษา
   useEffect(() => {
-    fetchCompanyInfo();
-    fetchAboutUsApi();
-  }, [apiUrl]);
-
-  useEffect(() => {
-    if (location.state?.scrollToCommunity) {
-      const communitySection = document.querySelector(".community-layout");
-      if (communitySection) {
-        communitySection.scrollIntoView({ behavior: "smooth" });
-      }
-      // Clear the state after scrolling
-      window.history.replaceState({}, document.title);
-    }
-  }, [location]);
-
-  if (companyInfo) {
-    console.log("Company Info:", companyInfo.address);
-  }
-
-  console.log("About Us:", aboutUs);
+    getAboutUs()
+      .then((res) => setAboutUs(res.data))
+      .catch((err) => console.error("Failed fetching AboutUs:", err));
+  }, [i18n.language]);
 
   return (
-    <div>
+    <div className="overflow-hidden">
       {/* hero  */}
       <div
         className="position-relative bg-dark"
@@ -99,14 +51,14 @@ const AboutUs = () => {
         <div className={aboutStyles.particleWrapper}>
           {particles}
           <div className={aboutStyles.contentLayout}>
-            <div className="p-3">
+            <div className="p-2">
               <h1
                 className={aboutStyles.mainTitle}
                 style={{
                   paddingTop: "0px",
                 }}
               >
-                The Excellent
+                {aboutUs?.heroTitle}
               </h1>
               <p
                 className={`${aboutStyles.mainText} ${aboutStyles.mainTextS32}`}
@@ -117,11 +69,7 @@ const AboutUs = () => {
                   marginTop: "30px",
                 }}
               >
-                The Excellent Communication Company Limited was founded in 2007.
-                to be an IT Solution and Engineering company who provide
-                product, solution including design and Engineering we
-                continuously develop all our solutions to be the most stability,
-                efficiency and data safe.
+                {aboutUs?.heroContent}
               </p>
             </div>
           </div>
@@ -156,20 +104,22 @@ const AboutUs = () => {
               lineHeight: "142%",
             }}
           >
-            SERVICE <br />
-            and <br />
-            SOLUTIONS
+            {t("aboutUs:service")}
+            <br />
+            {t("aboutUs:and")} <br />
+            {t("aboutUs:solutions")}
           </h1>
         </div>
         {/* Gems 1 */}
         <div
           className={[
             "position-absolute",
-            aboutStyles["gem-float-1"], // <-- grab the module class
+            aboutStyles["gem-float-1"],
             isHoveredGem1 ? aboutStyles.hovered : "",
           ].join(" ")}
           style={{
             zIndex: 5,
+            cursor: "pointer",
           }}
           onMouseEnter={() => {
             setIsHoveredGem1(true);
@@ -177,6 +127,7 @@ const AboutUs = () => {
           onMouseLeave={() => {
             setIsHoveredGem1(false);
           }}
+          onClick={() => navigate("/services/network-solution")}
         >
           <img
             src="src/assets/AboutUs/Gem1.svg"
@@ -189,11 +140,12 @@ const AboutUs = () => {
         <div
           className={[
             "position-absolute",
-            aboutStyles["gem-float-2"], // <-- grab the module class
+            aboutStyles["gem-float-2"],
             isHoveredGem2 ? aboutStyles.hovered : "",
           ].join(" ")}
           style={{
             zIndex: 5,
+            cursor: "pointer",
           }}
           onMouseEnter={() => {
             setIsHoveredGem2(true);
@@ -201,6 +153,7 @@ const AboutUs = () => {
           onMouseLeave={() => {
             setIsHoveredGem2(false);
           }}
+          onClick={() => navigate("/services/data-center")}
         >
           <img
             src="src/assets/AboutUs/Gem2.svg"
@@ -213,11 +166,12 @@ const AboutUs = () => {
         <div
           className={[
             "position-absolute",
-            aboutStyles["gem-float-3"], // <-- grab the module class
+            aboutStyles["gem-float-3"],
             isHoveredGem3 ? aboutStyles.hovered : "",
           ].join(" ")}
           style={{
             zIndex: 5,
+            cursor: "pointer",
           }}
           onMouseEnter={() => {
             setIsHoveredGem3(true);
@@ -225,6 +179,7 @@ const AboutUs = () => {
           onMouseLeave={() => {
             setIsHoveredGem3(false);
           }}
+          onClick={() => navigate("/services/data-management")}
         >
           <img
             src="src/assets/AboutUs/Gem3.svg"
@@ -237,11 +192,12 @@ const AboutUs = () => {
         <div
           className={[
             "position-absolute",
-            aboutStyles["gem-float-4"], // <-- grab the module class
+            aboutStyles["gem-float-4"],
             isHoveredGem4 ? aboutStyles.hovered : "",
           ].join(" ")}
           style={{
             zIndex: 5,
+            cursor: "pointer",
           }}
           onMouseEnter={() => {
             setIsHoveredGem4(true);
@@ -249,6 +205,7 @@ const AboutUs = () => {
           onMouseLeave={() => {
             setIsHoveredGem4(false);
           }}
+          onClick={() => navigate("/services/centralize-management")}
         >
           <img
             src="src/assets/AboutUs/Gem4.svg"
@@ -261,11 +218,12 @@ const AboutUs = () => {
         <div
           className={[
             "position-absolute",
-            aboutStyles["gem-float-5"], // <-- grab the module class
+            aboutStyles["gem-float-5"],
             isHoveredGem5 ? aboutStyles.hovered : "",
           ].join(" ")}
           style={{
             zIndex: 5,
+            cursor: "pointer",
           }}
           onMouseEnter={() => {
             setIsHoveredGem5(true);
@@ -273,6 +231,7 @@ const AboutUs = () => {
           onMouseLeave={() => {
             setIsHoveredGem5(false);
           }}
+          onClick={() => navigate("/services/multimedia-solution")}
         >
           <img
             src="src/assets/AboutUs/Gem5.svg"
@@ -285,11 +244,12 @@ const AboutUs = () => {
         <div
           className={[
             "position-absolute",
-            aboutStyles["gem-float-6"], // <-- grab the module class
+            aboutStyles["gem-float-6"],
             isHoveredGem6 ? aboutStyles.hovered : "",
           ].join(" ")}
           style={{
             zIndex: 5,
+            cursor: "pointer",
           }}
           onMouseEnter={() => {
             setIsHoveredGem6(true);
@@ -297,6 +257,7 @@ const AboutUs = () => {
           onMouseLeave={() => {
             setIsHoveredGem6(false);
           }}
+          onClick={() => navigate("/services/digital-transformation")}
         >
           <img
             src="src/assets/AboutUs/Gem6.svg"
@@ -324,17 +285,17 @@ const AboutUs = () => {
         <div className={aboutStyles["iso-layout"]}>
           <div className={aboutStyles["iso-item"]}>
             <div className={`${aboutStyles["iso-item-content"]} text-white`}>
-              <p>Empower your business with IT solutions by</p>
+              <p>{t("aboutUs:isoLineOne")}</p>
               <p>
                 <span className={aboutStyles["color-gradient-1"]}>
-                  Experts understand your every need.
+                  {t("aboutUs:isoLineTwo")}
                 </span>{" "}
               </p>
               <p>
                 <span>
-                  Guarantees with The{" "}
+                  {t("aboutUs:isoLineThree")}{" "}
                   <span className={aboutStyles["color-gradient-2"]}>
-                    ISO 9001:2015
+                    {aboutUs?.ISONumber}
                   </span>{" "}
                 </span>
               </p>
@@ -379,10 +340,11 @@ const AboutUs = () => {
           }}
         >
           <h1 className={aboutStyles["main-text-s50"]}>
-            “ Tailored IT solutions{" "}
+            {t("aboutUs:endLineOne")}
+            <br />
           </h1>
           <h1 className={aboutStyles["main-text-s50"]}>
-            we're ready to consult and serve you. ”
+            {t("aboutUs:endLineTwo")}
           </h1>
         </div>
         <div
@@ -394,7 +356,9 @@ const AboutUs = () => {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <h1 className={aboutStyles["main-text-s64"]}>Our Community</h1>
+          <h1 className={aboutStyles["main-text-s64"]}>
+            {t("aboutUs:ourCommunity")}
+          </h1>
         </div>
         <CommunityCard />
         <div className={`${aboutStyles["backgroundSVG"]} position-absolute`}>

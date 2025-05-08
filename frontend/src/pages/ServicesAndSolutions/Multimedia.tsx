@@ -1,69 +1,36 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Multimedia.module.css";
 
-interface MultimediaService {
-  id: number;
-  documentId: string;
-  subTitle: string | null; // คำบรรยายย่อย (อาจเป็น null)
-  content: ServiceContent[]; // อาร์เรย์ของ ServiceContent
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
-
-interface ServiceContent {
-  id: number;
-  title: string; // ชื่อของบริการ
-  subTitle: string | null; // คำบรรยายย่อย (อาจเป็น null)
-  content: string; // เนื้อหา
-}
+import { useTranslation } from "react-i18next";
+import type { MultimediaService } from "../../types/multimedia";
+import { getMultimedia } from "../../services/strapi";
 
 const Multimedia: React.FC = () => {
   const [MultimediaService, setContent] = useState<MultimediaService | null>(
     null
   );
+  const { t, i18n } = useTranslation(["common", "multimedia"]);
   // const [secondServices, setSecondServices] = useState<ServiceItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch(`${apiUrl}/api/multimedie-solution?populate=*`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // สมมติว่า API ส่งข้อมูลในรูปแบบ { data: { firstServices: [...], secondServices: [...] } }
-        setContent(data.data);
-        // setSecondServices(data.data.secondServices);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching multimedia services:", error);
-        setError("เกิดข้อผิดพลาดในการโหลดข้อมูล");
-        setLoading(false);
-      });
-  }, [apiUrl]);
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
+    getMultimedia()
+      .then((res) => setContent(res.data))
+      .catch((err) =>
+        console.error("Failed fetching Multimedia Service:", err)
+      );
+  }, [i18n.language]);
 
-  if (loading) {
-    return <div className={styles.container}>กำลังโหลดข้อมูล...</div>;
-  }
-
-  if (error) {
-    return <div className={styles.container}>{error}</div>;
-  }
-
-  console.log(MultimediaService);
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h1>
-          <span className={styles.gradientText}>MULTIMEDIA</span>
-          <span className={styles.solution}>SOLUTION</span>
+          <span className={styles.gradientText}>
+            {t("multimedia:multimedia")}
+          </span>
+          <span className={styles.solution}>{t("multimedia:solution")}</span>
         </h1>
         <p className={styles.subtitle}>{MultimediaService?.subTitle}</p>
       </header>

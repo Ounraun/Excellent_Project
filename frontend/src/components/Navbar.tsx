@@ -12,7 +12,7 @@ const Navigationbar = () => {
   const [showCommunityDropdown, setShowCommunityDropdown] = useState(false);
   const location = useLocation();
 
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation(["common", "navbar"]);
 
   const switchLang = (lng: "en" | "th") => {
     i18n.changeLanguage(lng);
@@ -31,11 +31,13 @@ const Navigationbar = () => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    whiteSpace: "nowrap" as const,
   };
 
   const activeNavLinkStyle = {
     ...navLinkStyle,
     color: "#FFFFFF",
+    whiteSpace: "nowrap" as const,
   };
 
   const activeUnderlineStyle = {
@@ -105,7 +107,7 @@ const Navigationbar = () => {
                 height: "100%",
               }}
             >
-              About us
+              {t("navbar:home")}
               {location.pathname === "/" && (
                 <div style={activeUnderlineStyle} />
               )}
@@ -120,7 +122,7 @@ const Navigationbar = () => {
                     height: "100%",
                   }}
                 >
-                  Service & Solutions
+                  {t("navbar:serviceAndSolutions")}
                   {location.pathname.startsWith("/services/") && (
                     <div style={activeUnderlineStyle} />
                   )}
@@ -147,7 +149,7 @@ const Navigationbar = () => {
                 }`}
                 onClick={() => setShowServicesDropdown(false)}
               >
-                Centralize Management
+                {t("navbar:centralizeManagement")}
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
@@ -157,7 +159,7 @@ const Navigationbar = () => {
                 }`}
                 onClick={() => setShowServicesDropdown(false)}
               >
-                Data Center
+                {t("navbar:dataCenter")}
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
@@ -169,7 +171,7 @@ const Navigationbar = () => {
                 }`}
                 onClick={() => setShowServicesDropdown(false)}
               >
-                Multimedia Solution
+                {t("navbar:multimediaSolutions")}
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
@@ -181,7 +183,7 @@ const Navigationbar = () => {
                 }`}
                 onClick={() => setShowServicesDropdown(false)}
               >
-                Digital Transformation
+                {t("navbar:digitalTransformation")}
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
@@ -193,7 +195,7 @@ const Navigationbar = () => {
                 }`}
                 onClick={() => setShowServicesDropdown(false)}
               >
-                Data Management
+                {t("navbar:dataManagement")}
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
@@ -205,7 +207,7 @@ const Navigationbar = () => {
                 }`}
                 onClick={() => setShowServicesDropdown(false)}
               >
-                Network Solution
+                {t("navbar:networkSolution")}
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown
