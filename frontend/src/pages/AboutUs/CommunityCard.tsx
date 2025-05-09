@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CommunityCard.module.css"; // Ensure CSS module is typed
+import { useNavigate } from "react-router-dom";
 // import communityFloor from "../../assets/AboutUs/Community-floor.svg";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -10,6 +11,8 @@ interface CommunityCardProps {
 }
 
 const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
+  const navigate = useNavigate();
+
   console.log(title);
   const handleRadioChange = () => {
     // Toggle class "blue" ใน body เมื่อมีการเปลี่ยนแปลง
@@ -18,6 +21,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
 
   interface Post {
     main_image?: { url: string };
+    documentId?: string;
     [key: string]: string | number | boolean | object | undefined; // Add other properties as needed
   }
 
@@ -98,6 +102,10 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
     return text.slice(0, maxLength) + "...";
   };
 
+  const handlePostClick = (documentId: string) => {
+    navigate(`/blog/doc/${documentId}`);
+  };
+
   return (
     <div
       className={styles.wrapper}
@@ -150,7 +158,16 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
                     {truncateText(String(companyEventsContent))}
                   </p>
                   <p className={styles.date}>{companyEventsDate}</p>
-                  <a href="#" className={styles.readMore}>
+                  <a
+                    href="#"
+                    className={styles.readMore}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (latestPosts.companyEvents?.documentId) {
+                        handlePostClick(latestPosts.companyEvents.documentId);
+                      }
+                    }}
+                  >
                     Read more
                   </a>
                 </div>
@@ -175,7 +192,16 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
                   {truncateText(String(knowledgeContent))}
                 </p>
                 <p className={styles.date}>{knowledgeDate}</p>
-                <a href="#" className={styles.readMore}>
+                <a
+                  href="#"
+                  className={styles.readMore}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (latestPosts.knowledge?.documentId) {
+                      handlePostClick(latestPosts.knowledge.documentId);
+                    }
+                  }}
+                >
                   Read more
                 </a>
               </div>
@@ -200,7 +226,16 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
                   {truncateText(String(societyContent))}
                 </p>
                 <p className={styles.date}>{societyDate}</p>
-                <a href="#" className={styles.readMore}>
+                <a
+                  href="#"
+                  className={styles.readMore}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (latestPosts.society?.documentId) {
+                      handlePostClick(latestPosts.society.documentId);
+                    }
+                  }}
+                >
                   Read more
                 </a>
               </div>

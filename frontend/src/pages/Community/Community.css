@@ -50,9 +50,15 @@
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   padding: 1.5rem;
-  /* background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  background-color: rgba(0, 27, 45, 1); /* เปลี่ยนพื้นหลังเป็นสี rgba */
+  fill: rgba(0, 27, 45, 1); /* สี fill */
+  stroke-width: 2px;
+  stroke: rgba(16, 151, 249, 0.5); /* คงค่า stroke เดิม */
+  filter: drop-shadow(0 4px 20px rgba(16, 151, 249, 0.25)); /* เปลี่ยน drop-shadow */
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border: 2px solid rgba(16, 151, 249, 0.5); /* เพิ่ม border ด้วยสี #1097F9 */
+  border-radius: 8px; /* เพิ่มมุมโค้ง */
   min-height: 300px;
 }
 
@@ -67,15 +73,7 @@
 } */
 
 .event-content{
-  background-color: rgba(0, 27, 45, 1); /* เปลี่ยนพื้นหลังเป็นสี rgba */
-  fill: rgba(0, 27, 45, 1); /* สี fill */
-  stroke-width: 2px;
-  stroke: rgba(16, 151, 249, 0.5); /* คงค่า stroke เดิม */
-  filter: drop-shadow(0 4px 20px rgba(16, 151, 249, 0.25)); /* เปลี่ยน drop-shadow */
-  box-sizing: border-box;
-  flex-shrink: 0;
-  border: 2px solid rgba(16, 151, 249, 0.5); /* เพิ่ม border ด้วยสี #1097F9 */
-  border-radius: 8px; /* เพิ่มมุมโค้ง */
+
 }
 
 .event-card.right .event-image-container {

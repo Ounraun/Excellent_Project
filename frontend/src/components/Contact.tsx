@@ -4,6 +4,7 @@ import emailIcon from "../assets/AboutUs/icon-email.svg";
 import facebookIcon from "../assets/AboutUs/icon-facebook.svg";
 import Map from "../assets/AboutUs/map.svg";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import type { CompanyInfo } from "../types/contact";
 import { getCompanyInfo } from "../services/strapi";
@@ -17,6 +18,7 @@ import { getCompanyInfo } from "../services/strapi";
 const Contact = () => {
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
   const { t, i18n } = useTranslation(["common", "contact"]);
+  const navigate = useNavigate();
   // const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -69,12 +71,46 @@ const Contact = () => {
                 >
                   <h5>{t("contact:serviceAndSolutions")}</h5>
                   <ul className="list-unstyled ps-3">
-                    <li>{t("contact:networkAndSolutions")}</li>
-                    <li>{t("contact:dataCenter")}</li>
-                    <li>{t("contact:dataManagement")}</li>
-                    <li>{t("contact:centralizeManagement")}</li>
-                    <li>{t("contact:multimediaSolution")}</li>
-                    <li>{t("contact:digitalTransformation")}</li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/services/network-solution")}
+                    >
+                      {t("contact:networkAndSolution")}
+                    </li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/services/data-center")}
+                    >
+                      {t("contact:dataCenter")}
+                    </li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/services/data-management")}
+                    >
+                      {t("contact:dataManagement")}
+                    </li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() =>
+                        navigate("/services/centralize-management")
+                      }
+                    >
+                      {t("contact:centralizeManagement")}
+                    </li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/services/multimedia")}
+                    >
+                      {t("contact:multimediaSolution")}
+                    </li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() =>
+                        navigate("/services/digital-transformation")
+                      }
+                    >
+                      {t("contact:digitalTransformation")}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -85,9 +121,24 @@ const Contact = () => {
                 >
                   <h5>{t("contact:ourCommunity")}</h5>
                   <ul className="list-unstyled ps-3">
-                    <li>{t("contact:companyEvents")}</li>
-                    <li>{t("contact:knowledge")}</li>
-                    <li>{t("contact:society")}</li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/community/company-events")}
+                    >
+                      {t("contact:companyEvents")}
+                    </li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/community/knowledge")}
+                    >
+                      {t("contact:knowledge")}
+                    </li>
+                    <li
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/community/society")}
+                    >
+                      {t("contact:society")}
+                    </li>
                   </ul>
                 </div>
               </div>
