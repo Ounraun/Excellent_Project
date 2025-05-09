@@ -63,10 +63,10 @@ const DataCenter: React.FC = () => {
 
       <div className="navigation">
         <Link to="/services/digital-transformation" className="navLink">
-          &lt;Digital transformation
+          &lt; DIGITAL TRANSFORMATION
         </Link>
         <Link to="/services/network-solution" className="navLink">
-          NETWORK SOLUTION&gt;
+          NETWORK SOLUTION &gt;
         </Link>
       </div>
     </div>

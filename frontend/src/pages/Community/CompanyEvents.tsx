@@ -148,7 +148,12 @@ const CompanyEvents = () => {
         </div>
 
         <div className="w100 text-center">
-          <button className="more-btn ">
+          <button
+            className="more-btn"
+            onClick={() =>
+              window.open("https://www.facebook.com/TecAsiaSupport", "_blank")
+            }
+          >
             <span>More from our page</span>
           </button>
         </div>

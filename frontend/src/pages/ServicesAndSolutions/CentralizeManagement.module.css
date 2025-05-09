@@ -8,6 +8,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 0 5%;
 }
 
 .header {
@@ -126,7 +127,7 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  padding: 0 2rem;
+  padding: 0 5%;
   position: absolute;
   top: 50%;
   left: 0;

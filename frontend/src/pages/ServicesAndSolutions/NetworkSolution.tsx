@@ -11,7 +11,7 @@ import { getNetworkSolution } from "../../services/strapi";
 const NetworkSolution: React.FC = () => {
   const [networkData, setNetworkData] = useState<NetworkSolution | null>(null);
   const { t, i18n } = useTranslation(["common", "networkSolution"]);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -74,10 +74,10 @@ const NetworkSolution: React.FC = () => {
       {/* ส่วนการนำทาง */}
       <nav className="navigation">
         <Link to="/services/data-center" className="navLink">
-          &lt; Data Center
+          &lt; DATA CENTER
         </Link>
         <Link to="/services/centralize-management" className="navLink">
-          Centralize Management &gt;
+          CENTRALIZE MANAGEMENT &gt;
         </Link>
       </nav>
     </div>

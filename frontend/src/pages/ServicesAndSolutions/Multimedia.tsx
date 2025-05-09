@@ -43,12 +43,9 @@ const Multimedia: React.FC = () => {
                 {/* <div className={styles.glowDot}></div> */}
                 <h3>{service.title}</h3>
                 <ul>
-                  {service.content
-                    .split("\n")
-                    .filter((item) => item.trim().startsWith("-"))
-                    .map((filteredItem, index) => (
-                      <li key={index}>{filteredItem}</li>
-                    ))}
+                  {service.content.split("\n").map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
             ))}
@@ -62,12 +59,9 @@ const Multimedia: React.FC = () => {
                 {/* <div className={styles.glowDot}></div> */}
                 <h3>{service.title}</h3>
                 <ul>
-                  {service.content
-                    .split("\n")
-                    .filter((item) => item.trim().startsWith("-"))
-                    .map((filteredItem, index) => (
-                      <li key={index}>{filteredItem}</li>
-                    ))}
+                  {service.content.split("\n").map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
             ))}

@@ -71,10 +71,10 @@ const DigitalTransformation: React.FC = () => {
 
       <div className="navigation">
         <Link to="/services/data-management" className="navLink">
-          &lt;Data management
+          &lt; DATA MANAGEMENT
         </Link>
         <Link to="/services/data-center" className="navLink">
-          Data center&gt;
+          DATA CENTER &gt;
         </Link>
       </div>
     </div>

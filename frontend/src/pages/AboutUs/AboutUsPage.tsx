@@ -19,6 +19,7 @@ const AboutUs = () => {
   const [isHoveredGem4, setIsHoveredGem4] = useState(false);
   const [isHoveredGem5, setIsHoveredGem5] = useState(false);
   const [isHoveredGem6, setIsHoveredGem6] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const particles = useMemo(() => {
     return <ParticlesComponent />;
@@ -30,13 +31,63 @@ const AboutUs = () => {
 
   // 1️⃣ ดึงข้อมูล About Us ตอนหน้า mount และทุกครั้งที่เปลี่ยนภาษา
   useEffect(() => {
+    setIsLoading(true);
     getAboutUs()
-      .then((res) => setAboutUs(res.data))
-      .catch((err) => console.error("Failed fetching AboutUs:", err));
+      .then((res) => {
+        setAboutUs(res.data);
+        // รอให้เนื้อหาโหลดเสร็จก่อน
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+      })
+      .catch((err) => {
+        console.error("Failed fetching AboutUs:", err);
+        setIsLoading(false);
+      });
   }, [i18n.language]);
 
+  useEffect(() => {
+    // เพิ่ม smooth scroll behavior ให้กับ html element
+    document.documentElement.style.scrollBehavior = "smooth";
+
+    // Cleanup function
+    return () => {
+      document.documentElement.style.scrollBehavior = "auto";
+    };
+  }, []);
+
+  // ฟังก์ชันสำหรับเลื่อนไปที่ส่วน Contact
+  const scrollToContact = () => {
+    if (!isLoading) {
+      const contactSection = document.getElementById("contact-section");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  // ตรวจสอบ URL hash เมื่อโหลดหน้า
+  useEffect(() => {
+    if (!isLoading && window.location.hash === "#contact-section") {
+      scrollToContact();
+    }
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "100vh" }}
+      >
+        <div className="spinner-border text-light" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden" style={{ scrollBehavior: "smooth" }}>
       {/* hero  */}
       <div
         className="position-relative bg-dark"
@@ -46,6 +97,7 @@ const AboutUs = () => {
           margin: 0,
           padding: 0,
           width: "100%",
+          scrollSnapAlign: "start",
         }}
       >
         <div className={aboutStyles.particleWrapper}>
@@ -79,7 +131,11 @@ const AboutUs = () => {
       {/* service and solutions */}
       <div
         className="position-relative"
-        style={{ height: "293vh", overflow: "hidden" }}
+        style={{
+          height: "293vh",
+          overflow: "hidden",
+          scrollSnapAlign: "start",
+        }}
       >
         {" "}
         {/* Background */}
@@ -310,6 +366,7 @@ const AboutUs = () => {
       {/* community */}
       <div
         className={`position-relative ${aboutStyles["community-layout"]} ${aboutStyles["bg-community"]}`}
+        style={{ scrollSnapAlign: "start" }}
       >
         <div className={aboutStyles["filter-bg-community-1"]}></div>
         <div className={aboutStyles["filter-bg-community-2"]}></div>
@@ -515,7 +572,9 @@ const AboutUs = () => {
       </div>
 
       {/* Contact Section */}
-      <Contact />
+      <div id="contact-section" style={{ scrollSnapAlign: "start" }}>
+        <Contact />
+      </div>
     </div>
   );
 };

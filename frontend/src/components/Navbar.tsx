@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { PersonCircle } from "react-bootstrap-icons";
 import "./Navbar.css";
@@ -11,6 +11,7 @@ const Navigationbar = () => {
   const [showServicesDropdown, setShowServicesDropdown] = useState(false);
   const [showCommunityDropdown, setShowCommunityDropdown] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { t, i18n } = useTranslation(["common", "navbar"]);
 
@@ -272,9 +273,21 @@ const Navigationbar = () => {
             </NavDropdown>
             <Nav.Link
               as={Link}
-              to="/contact"
+              to="/about-us"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/");
+                setTimeout(() => {
+                  const contactSection =
+                    document.getElementById("contact-section");
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }, 100);
+              }}
               style={{
-                ...(location.pathname === "/contact"
+                ...(location.pathname === "/" &&
+                location.hash === "#contact-section"
                   ? activeNavLinkStyle
                   : navLinkStyle),
                 marginRight: "50px",
@@ -282,9 +295,10 @@ const Navigationbar = () => {
               }}
             >
               Contact
-              {location.pathname === "/contact" && (
-                <div style={activeUnderlineStyle} />
-              )}
+              {location.pathname === "/" &&
+                location.hash === "#contact-section" && (
+                  <div style={activeUnderlineStyle} />
+                )}
             </Nav.Link>
             <NavDropdown
               title={

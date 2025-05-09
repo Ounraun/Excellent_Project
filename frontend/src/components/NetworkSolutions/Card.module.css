@@ -17,7 +17,7 @@
 
 
 .cardTitle {
-  color: var(--primary-color);
+  color: rgba(213, 130, 19, 1);
   font-family: var(--font-family-primary);
   font-size: 20px;
   font-weight: 700;
@@ -26,7 +26,7 @@
 
 
 .cardSubtitle {
-  color: var(--secondary-color);
+  color: rgba(255, 255, 255, 1);
   font-family: var(--font-family-secondary);
   font-size: 20px;
   font-weight: 700;

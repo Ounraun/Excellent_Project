@@ -92,10 +92,10 @@ const DataManagement: React.FC = () => {
 
       <div className="navigation">
         <a href="/services/multimedia-solution" className="navLink">
-          {"<MULTI MEDIA SOLUTION"}
+          {"< MULTI MEDIA SOLUTION"}
         </a>
         <a href="/services/digital-transformation" className="navLink">
-          {"Digital transformation>"}
+          {"DIGITAL TRANSFORMATION >"}
         </a>
       </div>
     </div>
