@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Contact from "../../components/Contact";
+import ParticlesComponent from "../../components/Particles/Particles";
 import "./Community.css";
 
 interface Category {
@@ -106,60 +107,90 @@ const CompanyEvents = () => {
   };
 
   return (
-    <>
-      <div className="community-container">
-        <div className="community-header">
-          <h1>COMPANY EVENTS</h1>
-        </div>
-
-        <div className="events-grid">
-          {loading ? (
-            <div className="loading">Loading...</div>
-          ) : posts.length === 0 ? (
-            <div className="no-posts">No company events found</div>
-          ) : (
-            posts.map((post, index) => (
-              <div
-                key={post.id}
-                className={`event-card ${index % 2 === 0 ? "left" : "right"}`}
-                onClick={() => handlePostClick(post.documentId)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="event-content">
-                  <h3>{post.title}</h3>
-                  <p>{post.content}</p>
-                </div>
-                {post.main_image && (
-                  <div className="event-image-container">
-                    <img
-                      src={`${apiUrl}${post.main_image.url}`}
-                      alt={post.main_image.alternativeText || post.title}
-                      className="event-image"
-                      onError={(e) => {
-                        console.error("Image failed to load:", e);
-                        e.currentTarget.src = "/placeholder.jpg";
-                      }}
-                    />
-                  </div>
-                )}
-              </div>
-            ))
-          )}
-        </div>
-
-        <div className="w100 text-center">
-          <button
-            className="more-btn"
-            onClick={() =>
-              window.open("https://www.facebook.com/TecAsiaSupport", "_blank")
-            }
-          >
-            <span>More from our page</span>
-          </button>
-        </div>
+    <div
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        backgroundColor: "#0d0d0e",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 0,
+          overflow: "hidden",
+        }}
+      >
+        <ParticlesComponent />
       </div>
-      <Contact />
-    </>
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          backgroundColor: "transparent",
+        }}
+      >
+        <div
+          className="community-container"
+          style={{ backgroundColor: "transparent" }}
+        >
+          <div className="community-header">
+            <h1>COMPANY EVENTS</h1>
+          </div>
+
+          <div className="events-grid">
+            {loading ? (
+              <div className="loading">Loading...</div>
+            ) : posts.length === 0 ? (
+              <div className="no-posts">No company events found</div>
+            ) : (
+              posts.map((post, index) => (
+                <div
+                  key={post.id}
+                  className={`event-card ${index % 2 === 0 ? "left" : "right"}`}
+                  onClick={() => handlePostClick(post.documentId)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="event-content">
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                  </div>
+                  {post.main_image && (
+                    <div className="event-image-container">
+                      <img
+                        src={`${apiUrl}${post.main_image.url}`}
+                        alt={post.main_image.alternativeText || post.title}
+                        className="event-image"
+                        onError={(e) => {
+                          console.error("Image failed to load:", e);
+                          e.currentTarget.src = "/placeholder.jpg";
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+
+          <div className="w100 text-center">
+            <button
+              className="more-btn"
+              onClick={() =>
+                window.open("https://www.facebook.com/TecAsiaSupport", "_blank")
+              }
+            >
+              <span>More from our page</span>
+            </button>
+          </div>
+        </div>
+        <Contact />
+      </div>
+    </div>
   );
 };
 

@@ -273,17 +273,10 @@ const Navigationbar = () => {
             </NavDropdown>
             <Nav.Link
               as={Link}
-              to="/about-us"
+              to="/#contact-section"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/");
-                setTimeout(() => {
-                  const contactSection =
-                    document.getElementById("contact-section");
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: "smooth" });
-                  }
-                }, 100);
+                navigate("/#contact-section");
               }}
               style={{
                 ...(location.pathname === "/" &&
