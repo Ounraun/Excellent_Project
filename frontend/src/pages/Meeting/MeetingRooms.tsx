@@ -99,6 +99,8 @@ const MeetingRooms: React.FC = () => {
           </div>
         ))}
       </div>
+      <div className="Ellipse_12_8_725"></div>
+      <div className="Ellipse_11_8_727"></div>
     </div>
   );
 };

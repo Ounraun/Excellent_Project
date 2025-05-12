@@ -3,6 +3,8 @@
   background-color: #0e141f;
   min-height: 100vh;
   color: white;
+  position: relative;
+  overflow: hidden;
 }
 
 .page-title {
@@ -19,6 +21,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .room-card {
@@ -99,6 +103,8 @@
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 table {
@@ -125,6 +131,8 @@ th {
 .booking-form {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .booking-form h2 {
@@ -203,4 +211,110 @@ input, select {
 
 .confirm-booking:hover {
   background-color: #ff8c00;
-} 
+}
+
+/* ปรับ Ellipse ให้เป็น absolute position */
+.Ellipse_11_8_727 {
+  position: absolute;
+  width: 30vw;
+  aspect-ratio: 873.449 / 1529.36;
+  height: auto;
+  filter: blur(174.136px);
+  box-sizing: border-box;
+  background: linear-gradient(133deg, #0092e329 28.43%, #2248c329 110.85%);
+  border: 0.693px solid #000;
+  border-radius: 50%;
+  transform: rotate(61.557deg);
+  top: -20%;
+  right: -10%;
+  z-index: 0;
+}
+
+.Ellipse_12_8_725 {
+  position: absolute;
+  filter: blur(174.136px);
+  box-sizing: border-box;
+  background: linear-gradient(133deg, #d07c031f 28.43%, #f9cd8d1f 110.85%);
+  border: 0.693px solid #000;
+  border-radius: 50%;
+  width: 40vw;
+  aspect-ratio: 911.052 / 1561.17;
+  height: auto;
+  transform: rotate(160.254deg);
+  bottom: -30%;
+  left: -15%;
+  z-index: 0;
+}
+
+/* เพิ่ม z-index ให้กับเนื้อหาทั้งหมด */
+.rooms-grid,
+.booking-table,
+.booking-form {
+  position: relative;
+  z-index: 1;
+}
+
+/* ปรับ media queries สำหรับ ellipse */
+@media screen and (max-width: 768px) {
+  .Ellipse_11_8_727 {
+    width: 50vw;
+    top: -10%;
+    right: -20%;
+  }
+
+  .Ellipse_12_8_725 {
+    width: 60vw;
+    bottom: -20%;
+    left: -25%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Ellipse_11_8_727 {
+    width: 70vw;
+    top: -5%;
+    right: -30%;
+  }
+
+  .Ellipse_12_8_725 {
+    width: 80vw;
+    bottom: -15%;
+    left: -35%;
+  }
+}
+
+/* เปลี่ยนจากขนาดแบบ fixed เป็น relative */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ใช้หน่วย vw หรือ % แทน px */
+.element {
+  width: 90vw;
+  max-width: 873.449px;
+  height: auto;
+  aspect-ratio: 873.449 / 1529.36;
+}
+
+/* เพิ่ม media queries สำหรับหน้าจอขนาดต่างๆ */
+@media screen and (max-width: 1200px) {
+  .element {
+    width: 95vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .element {
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .element {
+    width: 100vw;
+    padding: 0 10px;
+  }
+}
