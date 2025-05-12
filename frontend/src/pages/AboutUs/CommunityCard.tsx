@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CommunityCard.module.css"; // Ensure CSS module is typed
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 // import communityFloor from "../../assets/AboutUs/Community-floor.svg";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -12,6 +13,7 @@ interface CommunityCardProps {
 
 const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation(["common", "communityCard"]);
 
   console.log(title);
   const handleRadioChange = () => {
@@ -168,11 +170,13 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
                       }
                     }}
                   >
-                    Read more
+                    {t("communityCard:readMore")}
                   </a>
                 </div>
               </div>
-              <div className={styles.cardTitle}>Company events</div>
+              <div className={styles.cardTitle}>
+                {t("communityCard:companyEvents")}
+              </div>
             </label>
           ) : (
             <p>Loading...</p>
@@ -202,11 +206,13 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
                     }
                   }}
                 >
-                  Read more
+                  {t("communityCard:readMore")}
                 </a>
               </div>
             </div>
-            <div className={styles.cardTitle}>Knowledge</div>
+            <div className={styles.cardTitle}>
+              {t("communityCard:knowledge")}
+            </div>
           </label>
           <label className={styles.cardLayout} htmlFor="item-3" id="society">
             <div className={styles.card}>
@@ -236,11 +242,11 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ title }) => {
                     }
                   }}
                 >
-                  Read more
+                  {t("communityCard:readMore")}
                 </a>
               </div>
             </div>
-            <div className={styles.cardTitle}>Society</div>
+            <div className={styles.cardTitle}>{t("communityCard:society")}</div>
           </label>
         </div>
       </div>
