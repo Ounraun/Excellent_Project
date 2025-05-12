@@ -11,7 +11,7 @@ const Knowledge = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const apiUrl = import.meta.env.VITE_API_URL;
-  const { t, i18n } = useTranslation(["common", "knowledge"]);
+  const { t } = useTranslation(["common", "knowledge"]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -66,15 +66,15 @@ const Knowledge = () => {
   }, [posts]);
 
   // Mock data for AI trends cards
-  const aiTrendCards =
-    posts.length > 0
-      ? posts
-      : Array(9).fill({
-          title: "5 เทรนด์ AI",
-          subtitle: "ยกเวลว์ให้ธุรกิจปีนี้ 2025",
-          description: "5 AI Trends Shaping Businesses in 2025",
-          readMoreText: "Read more »",
-        });
+  // const aiTrendCards =
+  //   posts.length > 0
+  //     ? posts
+  //     : Array(9).fill({
+  //         title: "5 เทรนด์ AI",
+  //         subtitle: "ยกเวลว์ให้ธุรกิจปีนี้ 2025",
+  //         description: "5 AI Trends Shaping Businesses in 2025",
+  //         readMoreText: "Read more »",
+  //       });
 
   return (
     <>

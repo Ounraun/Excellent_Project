@@ -233,14 +233,14 @@
   opacity: 0.8;
 }
 
-/* .navigation {
+.navigation {
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 2rem 2rem; /* เพิ่ม padding ซ้ายขวา */
   width: 100%;
   position: relative;
   z-index: 2;
-} */
+}
 
 /* .navLink {
   color: #fff;
