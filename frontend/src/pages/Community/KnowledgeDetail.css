@@ -72,6 +72,8 @@
   font-size: 1.1rem;
   line-height: 1.8;
   color: #fff;
+    white-space: pre-wrap;
+      word-break: break-word;
 }
 
 .article-content h2 {

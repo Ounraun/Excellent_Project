@@ -71,7 +71,7 @@ const KnowledgeDetail: React.FC = () => {
       <div className="header-section">
         <div className="knowledge-header">
           <div className="title-tag">
-            <span className="tag">title topic / main article / example</span>
+            {/* <span className="tag">title topic / main article / example</span> */}
           </div>
           <h1 className="main-title">{post.title}</h1>
         </div>
