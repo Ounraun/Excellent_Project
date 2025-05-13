@@ -20,7 +20,7 @@ const Navigationbar = () => {
   };
 
   const navLinkStyle = {
-    fontFamily: "Manrope",
+    fontFamily: "Orbitron",
     fontWeight: 500,
     fontSize: "17.88px",
     letterSpacing: "2%",
