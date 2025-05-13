@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
-import { PersonCircle } from "react-bootstrap-icons";
 import "./Navbar.css";
 import { useTranslation } from "react-i18next";
+import adminIcon from "../assets/adminIconMennu.svg";
 
 const Navigationbar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -295,14 +295,17 @@ const Navigationbar = () => {
             </Nav.Link>
             <NavDropdown
               title={
-                <PersonCircle
-                  size={24}
+                <img
+                  src={adminIcon}
+                  alt="admin"
+                  width={24}
+                  height={24}
                   style={{
-                    color:
+                    filter:
                       location.pathname === "/nas" ||
                       location.pathname === "/meeting-rooms"
-                        ? "#FFFFFF"
-                        : "#A1A1A1",
+                        ? "none"
+                        : "grayscale(1) opacity(0.7)",
                   }}
                 />
               }
