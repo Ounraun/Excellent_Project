@@ -168,23 +168,23 @@ const MeetingRoomsBooking: React.FC = () => {
     return date;
   };
 
-  const getDayOfWeek = (date: Date) => {
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    return days[date.getDay()];
-  };
+  // const getDayOfWeek = (date: Date) => {
+  //   const days = [
+  //     "Sunday",
+  //     "Monday",
+  //     "Tuesday",
+  //     "Wednesday",
+  //     "Thursday",
+  //     "Friday",
+  //     "Saturday",
+  //   ];
+  //   return days[date.getDay()];
+  // };
 
-  const refreshData = () => {
-    setLoading(true);
-    setRefreshKey((prev) => prev + 1);
-  };
+  // const refreshData = () => {
+  //   setLoading(true);
+  //   setRefreshKey((prev) => prev + 1);
+  // };
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -584,10 +584,11 @@ const MeetingRoomsBooking: React.FC = () => {
         throw new Error(errorData.error?.message || "การจองไม่สำเร็จ");
       }
 
-      const responseData = await response.json();
-      console.log("การจองสำเร็จ ข้อมูลที่ได้รับ:", responseData);
+      // const responseData = await response.json();
+      // console.log("การจองสำเร็จ ข้อมูลที่ได้รับ:", responseData);
 
-      window.alert("จองห้องประชุมสำเร็จ");
+      // window.alert("จองห้องประชุมสำเร็จ");
+      navigate("/booking-confirm");
 
       // อัพเดท currentDisplayedWeek ให้ตรงกับสัปดาห์ที่จอง
       if (selectedDate) {
@@ -1393,15 +1394,16 @@ const MeetingRoomsBooking: React.FC = () => {
                 </>
               )}
             </div>
-
-            {!isViewMode && (
-              <>
-                {error && <div className={styles.errorMessage}>{error}</div>}
-                <button type="submit" className={styles.confirmBooking}>
-                  {isEditMode ? "บันทึกการเปลี่ยนแปลง" : "ยืนยันการจอง"}
-                </button>
-              </>
-            )}
+            <div className="w-100 text-center">
+              {!isViewMode && (
+                <>
+                  {error && <div className={styles.errorMessage}>{error}</div>}
+                  <button type="submit" className={styles.confirmBooking}>
+                    {isEditMode ? "บันทึกการเปลี่ยนแปลง" : "ยืนยันการจอง"}
+                  </button>
+                </>
+              )}
+            </div>
           </form>
         </div>
       )}

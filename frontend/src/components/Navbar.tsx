@@ -323,13 +323,13 @@ const Navigationbar = () => {
               }}
             >
               <NavDropdown.Item
-                as={Link}
-                to="/nas"
-                className={`dropdown-item ${
-                  location.pathname === "/nas" ? "active" : ""
-                }`}
+                as="a"
+                href="https://tec-asia.quickconnect.to/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dropdown-item"
               >
-                NAS
+                {t("navbar:nas")}
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
