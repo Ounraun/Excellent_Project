@@ -65,17 +65,6 @@ const Knowledge = () => {
     console.log("Current posts state:", posts);
   }, [posts]);
 
-  // Mock data for AI trends cards
-  // const aiTrendCards =
-  //   posts.length > 0
-  //     ? posts
-  //     : Array(9).fill({
-  //         title: "5 เทรนด์ AI",
-  //         subtitle: "ยกเวลว์ให้ธุรกิจปีนี้ 2025",
-  //         description: "5 AI Trends Shaping Businesses in 2025",
-  //         readMoreText: "Read more »",
-  //       });
-
   return (
     <>
       <div className="knowledge-container">
